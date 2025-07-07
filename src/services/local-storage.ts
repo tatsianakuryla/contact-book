@@ -2,11 +2,11 @@ import type { Contacts, Groups } from '../types/types';
 
 export class LocalStorage {
   public static saveContacts(value: Contacts): void {
-    localStorage.setItem('contacts', JSON.stringify(value));
+    localStorage.setItem('groups', JSON.stringify(value));
   }
 
   public static getContacts(): Contacts | [] {
-    const result = localStorage.getItem('contacts');
+    const result = localStorage.getItem('groups');
     return result ? JSON.parse(result) : [];
   }
 
