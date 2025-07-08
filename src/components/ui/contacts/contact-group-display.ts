@@ -10,27 +10,46 @@ export class ContactGroups {
     const groupedContacts = App.contactsState.groupedContacts;
     const groups = App.contactsState.groupNames;
     groups.forEach((group) => {
-      contactsSection.append(this.getGroupHeader(group));
-
       const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
+      contactsGroup.id = `group-list-${group}`;
+
+      const header = this.getGroupHeader(group, contactsGroup.id);
+
       groupedContacts[group].forEach((contact) => {
         contactsGroup.append(new ContactDisplay(contact).item);
       });
 
-      contactsSection.append(contactsGroup);
+      contactsSection.append(header, contactsGroup);
     });
     return contactsSection;
   }
 
-  private static getGroupHeader(groupName: string): HTMLDivElement {
+  private static getGroupHeader(groupName: string, targetId: string): HTMLDivElement {
     const headerWrapper: HTMLDivElement = ElementFactory.create('div', [
       'contacts__group-header',
       'flex',
     ]);
     const groupHeading = ElementFactory.create('h3', ['contacts__group-name']);
     groupHeading.textContent = groupName;
-    const openGroupButton = ButtonFactory.create('button', '', 'contacts__group-open-');
-    headerWrapper.append(groupHeading, openGroupButton);
+    headerWrapper.append(groupHeading, this.getOpenGroupButton(targetId));
     return headerWrapper;
+  }
+
+  private static getOpenGroupButton(targetId: string): HTMLButtonElement {
+    const toggleButton = ButtonFactory.create(
+      'button',
+      '▾',
+      'contacts__group-toggle',
+      (event: MouseEvent) => {
+        const targetList = document.getElementById(targetId);
+        if (targetList) {
+          targetList.classList.toggle('hidden');
+          const button = event.currentTarget as HTMLButtonElement;
+          button.textContent = targetList.classList.contains('hidden') ? '▸' : '▾';
+        }
+      },
+    );
+    toggleButton.setAttribute('aria-controls', targetId);
+    return toggleButton;
   }
 }

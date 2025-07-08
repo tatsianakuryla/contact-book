@@ -8,7 +8,7 @@ export class ButtonFactory {
     modifier: string,
     onClick?: (event: MouseEvent) => void,
   ): HTMLButtonElement {
-    const button = ElementFactory.create('button', ['button', `${modifier}button`]);
+    const button = ElementFactory.create('button', ['button', `${modifier}-button`]);
     button.type = type;
     button.textContent = textContent;
     if (onClick) button.addEventListener('click', onClick);

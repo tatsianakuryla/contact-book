@@ -13,7 +13,7 @@ export class GroupsState extends BaseListState<Group> {
   }
 
   public removeGroup(groupId: string): void {
-    this.removeItem((group) => group.group.toLowerCase() === groupId.toLowerCase());
+    this.removeItem((group) => group.name.toLowerCase() === groupId.toLowerCase());
     this.saveGroup();
   }
 

@@ -28,14 +28,14 @@ export class Header {
   }
 
   private static createAddContactButton(): HTMLButtonElement {
-    return ButtonFactory.create('button', this.buttonLabels.addContact, 'header__add-contact-');
+    return ButtonFactory.create('button', this.buttonLabels.addContact, 'header__add-contact');
   }
 
   private static createContactGroupButton(): HTMLButtonElement {
     return ButtonFactory.create(
       'button',
       this.buttonLabels.contactGroups,
-      'header__contact-groups-',
+      'header__contact-groups',
     );
   }
 }
