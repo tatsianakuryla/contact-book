@@ -1,5 +1,5 @@
 export interface Group {
-  group: string;
+  name: string;
 }
 
 export interface Contact {
