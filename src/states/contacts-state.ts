@@ -3,13 +3,14 @@ import { LocalStorage } from '../services/local-storage';
 import { BaseListState } from './base-list-state';
 
 export class ContactsState extends BaseListState<Contact> {
+  constructor() {
+    super();
+    this.init();
+  }
+
   override addItem(item: Contact): void {
     super.addItem(item);
     this.saveContacts();
-  }
-
-  public init(): void {
-    this.items = LocalStorage.getContacts();
   }
 
   public removeContact(telephoneNumber: string): void {
@@ -22,6 +23,10 @@ export class ContactsState extends BaseListState<Contact> {
       contact.telephoneNumber === updatedContact.telephoneNumber ? updatedContact : contact,
     );
     this.saveContacts();
+  }
+
+  private init(): void {
+    this.items = LocalStorage.getContacts();
   }
 
   private saveContacts(): void {
