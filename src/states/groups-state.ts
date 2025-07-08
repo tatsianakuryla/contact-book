@@ -1,0 +1,23 @@
+import type { Group } from '../types/types';
+import { LocalStorage } from '../services/local-storage';
+import { BaseListState } from './base-list-state';
+
+export class GroupsState extends BaseListState<Group> {
+  override addItem(item: Group): void {
+    super.addItem(item);
+    this.saveGroup();
+  }
+
+  public init(): void {
+    this.items = LocalStorage.getGroups();
+  }
+
+  public removeGroup(groupId: string): void {
+    this.removeItem((group) => group.group.toLowerCase() === groupId.toLowerCase());
+    this.saveGroup();
+  }
+
+  private saveGroup(): void {
+    LocalStorage.saveGroups(this.items);
+  }
+}
