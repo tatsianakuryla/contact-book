@@ -22,13 +22,13 @@ export class ContactDisplay {
     return this._item;
   }
 
-  private getContactName(contact: Contact): HTMLElement {
+  private getContactName(contact: Contact): HTMLDivElement {
     const name = ElementFactory.create('div', ['contact__name']);
     name.textContent = contact.name;
     return name;
   }
 
-  private getContactNumber(contact: Contact): HTMLElement {
+  private getContactNumber(contact: Contact): HTMLDivElement {
     const number = ElementFactory.create('div', ['contact__number']);
     number.textContent = contact.telephoneNumber;
     return number;

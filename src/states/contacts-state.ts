@@ -1,7 +1,8 @@
-import type { Contact, Contacts } from '../types/types';
+import type { Contact, Contacts, Group } from '../types/types';
 import { LocalStorage } from '../services/local-storage/local-storage';
-import { BaseListState } from './base-list-state';
 import { IdGenerator } from '../services/id-generator/id-generator';
+
+import { BaseListState } from './base-list-state';
 
 export class ContactsState extends BaseListState<Contact> {
   private _groupedContacts: Record<string, Contacts> = {};
@@ -26,6 +27,11 @@ export class ContactsState extends BaseListState<Contact> {
 
   public removeContact(id: string): void {
     this.removeItem((contact) => contact.id === id);
+    this.saveContacts();
+  }
+
+  public removeContactsWithGroup(group: Group): void {
+    this.items = this.items.filter((item) => item.group.name !== group.name);
     this.saveContacts();
   }
 
