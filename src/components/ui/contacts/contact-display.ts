@@ -1,11 +1,15 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import type { Contact } from '../../../types/types';
 import { ButtonFactory } from '../button/button-factory';
+import { App } from '../../../App';
+import { GroupedContacts } from './grouped-contacts';
 
 export class ContactDisplay {
   private _item: HTMLLIElement = ElementFactory.create('li', ['contact', 'flex']);
+  private _contact: Contact;
 
   constructor(contact: Contact) {
+    this._contact = contact;
     this._item.append(
       this.getContactName(contact),
       this.getContactNumber(contact),
@@ -35,6 +39,14 @@ export class ContactDisplay {
   }
 
   private getDeleteContactButton(): HTMLButtonElement {
-    return ButtonFactory.create({ type: 'button', textContent: '', modifier: 'contact__delete' });
+    return ButtonFactory.create({
+      type: 'button',
+      textContent: '',
+      modifier: 'contact__delete',
+      onClick: () => {
+        App.contactsState.removeContact(this._contact.id);
+        GroupedContacts.display();
+      },
+    });
   }
 }

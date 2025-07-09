@@ -25,7 +25,7 @@ export class ContactsState extends BaseListState<Contact> {
   }
 
   public removeContact(id: string): void {
-    this.removeItem((contact) => contact.id !== id);
+    this.removeItem((contact) => contact.id === id);
     this.saveContacts();
   }
 

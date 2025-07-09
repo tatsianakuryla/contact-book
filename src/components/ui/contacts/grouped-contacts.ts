@@ -7,24 +7,30 @@ export class GroupedContacts {
   public static contactsSection = ElementFactory.create('section', ['contacts__section']);
   public static display(): HTMLElement {
     this.contactsSection.replaceChildren();
-    const groupedContacts = App.contactsState.groupedContacts;
-    const groups = App.contactsState.groupNames;
-    groups.forEach((group) => {
-      const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
-      contactsGroup.id = `group-list-${group}`;
+    if (App.contactsState.items.length === 0) {
+      const text = ElementFactory.create('p', ['main__empty-text']);
+      text.textContent = 'Список контактов пуст';
+      this.contactsSection.append(text);
+    } else {
+      const groupedContacts = App.contactsState.groupedContacts;
+      const groups = App.contactsState.groupNames;
+      groups.forEach((group) => {
+        const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
+        contactsGroup.id = `group-list-${group}`;
 
-      const header = this.getGroupHeader(group, contactsGroup.id);
+        const header = this.getGroupHeader(group, contactsGroup.id);
 
-      groupedContacts[group].forEach((contact) => {
-        contactsGroup.append(new ContactDisplay(contact).item);
+        groupedContacts[group].forEach((contact) => {
+          contactsGroup.append(new ContactDisplay(contact).item);
+        });
+
+        if (group === '') {
+          this.contactsSection.append(contactsGroup);
+        } else {
+          this.contactsSection.append(header, contactsGroup);
+        }
       });
-
-      if (group === '') {
-        this.contactsSection.append(contactsGroup);
-      } else {
-        this.contactsSection.append(header, contactsGroup);
-      }
-    });
+    }
     return this.contactsSection;
   }
 

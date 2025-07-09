@@ -95,7 +95,6 @@ export class ContactDialog {
     event.preventDefault();
     App.contactsState.addItem(this.completeNewContact());
     GroupedContacts.display();
-    console.log(App.contactsState.items);
     this.close();
   }
 

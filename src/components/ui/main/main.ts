@@ -1,6 +1,5 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import { ContainerFactory } from '../container-factory/container-factory';
-import { App } from '../../../App';
 import { GroupedContacts } from '../contacts/grouped-contacts';
 
 export class Main {
@@ -18,14 +17,8 @@ export class Main {
     return this._main;
   }
 
-  init(): void {
-    if (App.contactsState.items.length === 0) {
-      const text = ElementFactory.create('p', ['main__empty-text']);
-      text.textContent = 'Список контактов пуст';
-      this._container.append(text);
-    } else {
-      this._container.append(GroupedContacts.contactsSection);
-      GroupedContacts.display();
-    }
+  public init(): void {
+    this._container.append(GroupedContacts.contactsSection);
+    GroupedContacts.display();
   }
 }
