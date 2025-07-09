@@ -19,7 +19,11 @@ export class GroupedContacts {
         contactsGroup.append(new ContactDisplay(contact).item);
       });
 
-      contactsSection.append(header, contactsGroup);
+      if (group === '') {
+        contactsSection.append(contactsGroup);
+      } else {
+        contactsSection.append(header, contactsGroup);
+      }
     });
     return contactsSection;
   }
