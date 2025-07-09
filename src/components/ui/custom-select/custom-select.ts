@@ -51,6 +51,12 @@ export class CustomSelect {
     return this._container;
   }
 
+  public reset(): void {
+    this._selectedIndex = -1;
+    this._trigger.textContent = 'Выберите группу';
+    this._listBox.classList.add('hidden');
+  }
+
   private toggleList(): void {
     if (this.isOpen()) {
       this.closeList();

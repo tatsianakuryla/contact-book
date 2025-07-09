@@ -3,7 +3,7 @@ import { ButtonFactory } from '../button/button-factory';
 import { App } from '../../../App';
 import { ContactDisplay } from './contact-display';
 
-export class ContactGroups {
+export class GroupedContacts {
   public static display(): HTMLElement {
     const contactsSection = ElementFactory.create('section', ['contacts__section']);
 

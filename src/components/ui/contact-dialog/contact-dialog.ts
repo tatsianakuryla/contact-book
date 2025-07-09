@@ -12,14 +12,14 @@ export class ContactDialog {
   private readonly _form: HTMLFormElement;
   private readonly _nameInput: HTMLInputElement;
   private readonly _phoneInput: HTMLInputElement;
-  private readonly _select: HTMLDivElement;
+  private readonly _select: CustomSelect;
 
   constructor(contact: Contact, groups: Group[]) {
     this._dialog = ElementFactory.create('dialog', ['contact-dialog']);
     this._form = ElementFactory.create('form', ['contact-form']);
     this._nameInput = this.createNameInput(contact);
     this._phoneInput = this.createTelephoneNumberInput(contact);
-    this._select = new CustomSelect(contact, groups).container;
+    this._select = new CustomSelect(contact, groups);
     this.initForm(contact);
 
     this._dialog.append(this._form);
@@ -48,7 +48,7 @@ export class ContactDialog {
       heading,
       this._nameInput,
       this._phoneInput,
-      this._select,
+      this._select.container,
       saveButton,
       cancelButton,
     );
@@ -97,6 +97,8 @@ export class ContactDialog {
   }
 
   public close(): void {
+    this._form.reset();
+    this._select.reset();
     this._dialog.close();
   }
 }
