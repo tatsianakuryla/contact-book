@@ -36,11 +36,11 @@ export class ContactGroups {
   }
 
   private static getOpenGroupButton(targetId: string): HTMLButtonElement {
-    const toggleButton = ButtonFactory.create(
-      'button',
-      '▾',
-      'contacts__group-toggle',
-      (event: MouseEvent) => {
+    const toggleButton = ButtonFactory.create({
+      type: 'button',
+      textContent: '▾',
+      modifier: 'contacts__group-toggle',
+      onClick: (event: MouseEvent) => {
         const targetList = document.getElementById(targetId);
         if (targetList) {
           targetList.classList.toggle('hidden');
@@ -48,7 +48,7 @@ export class ContactGroups {
           button.textContent = targetList.classList.contains('hidden') ? '▸' : '▾';
         }
       },
-    );
+    });
     toggleButton.setAttribute('aria-controls', targetId);
     return toggleButton;
   }

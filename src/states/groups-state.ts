@@ -8,8 +8,14 @@ export class GroupsState extends BaseListState<Group> {
     this.saveGroup();
   }
 
+  constructor() {
+    super();
+    this.init();
+  }
+
   public init(): void {
     this.items = LocalStorage.getGroups();
+    this.saveGroup();
   }
 
   public removeGroup(groupId: string): void {

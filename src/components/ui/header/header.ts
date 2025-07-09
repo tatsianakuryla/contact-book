@@ -1,6 +1,7 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import { ContainerFactory } from '../container-factory/container-factory';
 import { ButtonFactory } from '../button/button-factory';
+import { App } from '../../../App';
 
 export class Header {
   private static readonly buttonLabels = {
@@ -28,14 +29,21 @@ export class Header {
   }
 
   private static createAddContactButton(): HTMLButtonElement {
-    return ButtonFactory.create('button', this.buttonLabels.addContact, 'header__add-contact');
+    return ButtonFactory.create({
+      type: 'button',
+      textContent: this.buttonLabels.addContact,
+      modifier: 'header__add-contact',
+      onClick: () => {
+        App.dialog.open();
+      },
+    });
   }
 
   private static createContactGroupButton(): HTMLButtonElement {
-    return ButtonFactory.create(
-      'button',
-      this.buttonLabels.contactGroups,
-      'header__contact-groups',
-    );
+    return ButtonFactory.create({
+      type: 'button',
+      textContent: this.buttonLabels.contactGroups,
+      modifier: 'header__contact-groups',
+    });
   }
 }

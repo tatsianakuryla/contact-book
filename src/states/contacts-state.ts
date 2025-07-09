@@ -48,7 +48,7 @@ export class ContactsState extends BaseListState<Contact> {
   private groupContacts(): Record<string, Contacts> {
     const result: Record<string, Contacts> = {};
     this.items.forEach((item) => {
-      const groupName = item.group.name;
+      const groupName = item.group?.name;
       result[groupName] ??= [];
       result[groupName].push(item);
     });

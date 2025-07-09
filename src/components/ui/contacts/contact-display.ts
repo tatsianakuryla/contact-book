@@ -31,10 +31,10 @@ export class ContactDisplay {
   }
 
   private getEditContactButton(): HTMLButtonElement {
-    return ButtonFactory.create('button', '', 'contact__edit');
+    return ButtonFactory.create({ type: 'button', textContent: '', modifier: 'contact__edit' });
   }
 
   private getDeleteContactButton(): HTMLButtonElement {
-    return ButtonFactory.create('button', '', 'contact__delete');
+    return ButtonFactory.create({ type: 'button', textContent: '', modifier: 'contact__delete' });
   }
 }
