@@ -35,7 +35,14 @@ export class ContactDisplay {
   }
 
   private getEditContactButton(): HTMLButtonElement {
-    return ButtonFactory.create({ type: 'button', textContent: '', modifier: 'contact__edit' });
+    return ButtonFactory.create({
+      type: 'button',
+      textContent: '',
+      modifier: 'contact__edit',
+      onClick: () => {
+        App.contactDialog.open(this._contact);
+      },
+    });
   }
 
   private getDeleteContactButton(): HTMLButtonElement {

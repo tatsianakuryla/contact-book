@@ -34,7 +34,7 @@ export class Header {
       textContent: this.buttonLabels.addContact,
       modifier: 'header__add-contact',
       onClick: () => {
-        App.dialog.open();
+        App.contactDialog.open();
       },
     });
   }

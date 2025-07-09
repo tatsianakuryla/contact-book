@@ -14,7 +14,9 @@ export class CustomSelect {
   constructor(contact: Contact, groups: Group[]) {
     this._contact = contact;
     this._groups = groups;
-    this._selectedIndex = this._groups.findIndex((g) => g.name === this._contact.group.name);
+    this._selectedIndex = this._groups.findIndex(
+      (group) => group.name === this._contact.group.name,
+    );
 
     this._container = ElementFactory.create('div', ['contact-form__custom-select']);
 
@@ -31,12 +33,12 @@ export class CustomSelect {
     this._listBox.setAttribute('tabindex', '-1');
     this._container.append(this._listBox);
 
-    this._groups.forEach((group, idx) => {
+    this._groups.forEach((group, index) => {
       const option = ButtonFactory.create({
         type: 'button',
         textContent: group.name,
         modifier: 'contact-form__option',
-        onClick: () => this.onOptionSelect(idx),
+        onClick: () => this.onOptionSelect(index),
       });
       option.setAttribute('tabindex', '-1');
       this._listBox.append(option);
@@ -89,7 +91,18 @@ export class CustomSelect {
     this.closeList();
   }
 
-  private select(index: number): void {
+  public setContact(contact: Contact): void {
+    this._contact = contact;
+    const index = this._groups.findIndex((group) => group.name === contact.group.name);
+    if (index >= 0) {
+      this._selectedIndex = index;
+      this._trigger.textContent = this._groups[index].name;
+    } else {
+      this.reset();
+    }
+  }
+
+  public select(index: number): void {
     this._selectedIndex = index;
     const group = this._groups[index];
     this._trigger.textContent = group.name;
