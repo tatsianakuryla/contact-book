@@ -4,9 +4,9 @@ import { App } from '../../../App';
 import { ContactDisplay } from './contact-display';
 
 export class GroupedContacts {
+  public static contactsSection = ElementFactory.create('section', ['contacts__section']);
   public static display(): HTMLElement {
-    const contactsSection = ElementFactory.create('section', ['contacts__section']);
-
+    this.contactsSection.replaceChildren();
     const groupedContacts = App.contactsState.groupedContacts;
     const groups = App.contactsState.groupNames;
     groups.forEach((group) => {
@@ -20,12 +20,12 @@ export class GroupedContacts {
       });
 
       if (group === '') {
-        contactsSection.append(contactsGroup);
+        this.contactsSection.append(contactsGroup);
       } else {
-        contactsSection.append(header, contactsGroup);
+        this.contactsSection.append(header, contactsGroup);
       }
     });
-    return contactsSection;
+    return this.contactsSection;
   }
 
   private static getGroupHeader(groupName: string, targetId: string): HTMLDivElement {

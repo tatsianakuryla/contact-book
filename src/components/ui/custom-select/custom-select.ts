@@ -51,6 +51,10 @@ export class CustomSelect {
     return this._container;
   }
 
+  public get value(): string {
+    return this._selectedIndex >= 0 ? this._groups[this._selectedIndex].name : '';
+  }
+
   public reset(): void {
     this._selectedIndex = -1;
     this._trigger.textContent = 'Выберите группу';

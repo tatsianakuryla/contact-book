@@ -6,6 +6,8 @@ import { ButtonFactory } from '../button/button-factory';
 import type { Contact, Group } from '../../../types/types';
 import { defaultContactValue } from '../../../constants/constants';
 import { CustomSelect } from '../custom-select/custom-select';
+import { App } from '../../../App';
+import { GroupedContacts } from '../contacts/grouped-contacts';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -13,8 +15,10 @@ export class ContactDialog {
   private readonly _nameInput: HTMLInputElement;
   private readonly _phoneInput: HTMLInputElement;
   private readonly _select: CustomSelect;
+  private readonly _contact: Contact;
 
   constructor(contact: Contact, groups: Group[]) {
+    this._contact = contact;
     this._dialog = ElementFactory.create('dialog', ['contact-dialog']);
     this._form = ElementFactory.create('form', ['contact-form']);
     this._nameInput = this.createNameInput(contact);
@@ -89,7 +93,19 @@ export class ContactDialog {
 
   private onSubmit(event: SubmitEvent): void {
     event.preventDefault();
+    App.contactsState.addItem(this.completeNewContact());
+    GroupedContacts.display();
+    console.log(App.contactsState.items);
     this.close();
+  }
+
+  private completeNewContact(): Contact {
+    return App.contactsState.completeNewContact(
+      this._contact,
+      this._nameInput.value,
+      this._phoneInput.value,
+      this._select.value,
+    );
   }
 
   public open(): void {

@@ -1,5 +1,5 @@
 import type { Group } from '../types/types';
-import { LocalStorage } from '../services/local-storage';
+import { LocalStorage } from '../services/local-storage/local-storage';
 import { BaseListState } from './base-list-state';
 
 export class GroupsState extends BaseListState<Group> {

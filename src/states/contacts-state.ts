@@ -1,6 +1,7 @@
 import type { Contact, Contacts } from '../types/types';
-import { LocalStorage } from '../services/local-storage';
+import { LocalStorage } from '../services/local-storage/local-storage';
 import { BaseListState } from './base-list-state';
+import { IdGenerator } from '../services/id-generator/id-generator';
 
 export class ContactsState extends BaseListState<Contact> {
   private _groupedContacts: Record<string, Contacts> = {};
@@ -23,16 +24,40 @@ export class ContactsState extends BaseListState<Contact> {
     this.saveContacts();
   }
 
-  public removeContact(telephoneNumber: string): void {
-    this.removeItem((contact) => contact.telephoneNumber !== telephoneNumber);
+  public removeContact(id: string): void {
+    this.removeItem((contact) => contact.id !== id);
     this.saveContacts();
   }
 
   public editContact(updatedContact: Contact): void {
     this.items = this.items.map((contact) =>
-      contact.telephoneNumber === updatedContact.telephoneNumber ? updatedContact : contact,
+      contact.id === updatedContact.id ? updatedContact : contact,
     );
     this.saveContacts();
+  }
+
+  public completeNewContact(
+    contact: Contact,
+    nameInputValue: string,
+    phoneInputValue: string,
+    selectValue: string,
+  ): Contact {
+    const rawName = nameInputValue.trim().toLowerCase();
+    const name = rawName
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    const telephoneNumber = phoneInputValue;
+    const group = selectValue;
+    const id = contact.id === '' ? IdGenerator.generate() : contact.id;
+
+    return {
+      id,
+      name,
+      telephoneNumber,
+      group: { name: group },
+    };
   }
 
   private init(): void {

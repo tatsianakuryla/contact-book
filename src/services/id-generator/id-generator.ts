@@ -1,4 +1,4 @@
-import { LocalStorage } from '../../services/local-storage';
+import { LocalStorage } from '../local-storage/local-storage';
 
 export class IdGenerator {
   private static counter: number = LocalStorage.getLastId();

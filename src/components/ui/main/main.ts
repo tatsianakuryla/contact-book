@@ -1,7 +1,7 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import { ContainerFactory } from '../container-factory/container-factory';
 import { App } from '../../../App';
-import { GroupedContacts } from '../contacts/grouped-contacts.ts';
+import { GroupedContacts } from '../contacts/grouped-contacts';
 
 export class Main {
   private readonly _main: HTMLElement;
@@ -24,7 +24,8 @@ export class Main {
       text.textContent = 'Список контактов пуст';
       this._container.append(text);
     } else {
-      this._container.append(GroupedContacts.display());
+      this._container.append(GroupedContacts.contactsSection);
+      GroupedContacts.display();
     }
   }
 }

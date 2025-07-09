@@ -3,6 +3,7 @@ export interface Group {
 }
 
 export interface Contact {
+  id: string;
   name: string;
   telephoneNumber: string;
   group: Group;

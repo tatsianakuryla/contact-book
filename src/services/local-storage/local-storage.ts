@@ -1,5 +1,5 @@
-import type { Contacts, Groups } from '../types/types';
-import { defaultGroups } from '../constants/constants';
+import type { Contacts, Groups } from '../../types/types';
+import { defaultGroups } from '../../constants/constants';
 
 export class LocalStorage {
   public static saveContacts(value: Contacts): void {
