@@ -7,6 +7,7 @@ export class CustomSelect {
   private readonly _trigger: HTMLButtonElement;
   private readonly _listBox: HTMLDivElement;
   private _options: HTMLButtonElement[] = [];
+  private readonly _emptyGroupError: HTMLDivElement;
   private _selectedIndex: number = -1;
   private _contact: Contact;
   private readonly _groups: Group[];
@@ -27,11 +28,22 @@ export class CustomSelect {
       modifier: 'contact-form__trigger',
       onClick: () => this.toggleList(),
     });
-    this._container.append(this._trigger);
 
     this._listBox = ElementFactory.create('div', ['contact-form__options-list', 'hidden']);
     this._listBox.setAttribute('tabindex', '-1');
-    this._container.append(this._listBox);
+    this._container.append(this._trigger, this._listBox);
+
+    if (groups.length !== 0) {
+      const noneOption = ButtonFactory.create({
+        type: 'button',
+        textContent: 'Без группы',
+        modifier: 'contact-form__option--none',
+        onClick: () => this.onOptionSelect(-1),
+      });
+      noneOption.setAttribute('tabindex', '-1');
+      this._listBox.append(noneOption);
+      this._options.push(noneOption);
+    }
 
     this._groups.forEach((group, index) => {
       const option = ButtonFactory.create({
@@ -47,6 +59,8 @@ export class CustomSelect {
 
     this._container.addEventListener('keydown', (event) => this.onKeyDown(event));
     document.addEventListener('click', (event) => this.onDocumentClick(event));
+    this._emptyGroupError = ElementFactory.create('div', ['contact-form__empty-group-error']);
+    this._container.append(this._emptyGroupError);
   }
 
   public get container(): HTMLDivElement {
@@ -72,6 +86,10 @@ export class CustomSelect {
   }
 
   private openList(): void {
+    if (this._groups.length === 0) {
+      this._emptyGroupError.textContent = 'Нет созданных групп';
+      return;
+    }
     this._listBox.classList.remove('hidden');
     const index = this._selectedIndex >= 0 ? this._selectedIndex : 0;
     this.focusOption(index);
@@ -87,7 +105,14 @@ export class CustomSelect {
   }
 
   private onOptionSelect(index: number): void {
-    this.select(index);
+    if (index < 0) {
+      this.reset();
+      this._contact.group = {
+        name: '',
+      };
+    } else {
+      this.select(index);
+    }
     this.closeList();
   }
 

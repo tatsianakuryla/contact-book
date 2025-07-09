@@ -1,5 +1,4 @@
 import type { Contacts, Groups } from '../../types/types';
-import { defaultGroups } from '../../constants/constants';
 
 export class LocalStorage {
   public static saveContacts(value: Contacts): void {
@@ -17,7 +16,7 @@ export class LocalStorage {
 
   public static getGroups(): Groups | [] {
     const result = localStorage.getItem('groups');
-    return result ? JSON.parse(result) : defaultGroups;
+    return result ? JSON.parse(result) : [];
   }
 
   public static saveLastId(value: number): void {
