@@ -1,7 +1,7 @@
 import { ContactsState } from './states/contacts-state';
 import { GroupsState } from './states/groups-state';
 import { BaseView } from './views/base-view';
-import { ContactDialog } from './components/ui/contact-dialog/contact-dialog';
+import { ContactDialog } from './components/ui/contacts/contact-dialog';
 
 export class App {
   public static readonly contactsState = new ContactsState();

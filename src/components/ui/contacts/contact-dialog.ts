@@ -7,7 +7,7 @@ import type { Contact, Group } from '../../../types/types';
 import { defaultContactValue } from '../../../constants/constants';
 import { CustomSelect } from '../custom-select/custom-select';
 import { App } from '../../../App';
-import { GroupedContacts } from '../contacts/grouped-contacts';
+import { GroupedContacts } from './grouped-contacts';
 import { ContactDataValidator } from '../../validator/contact-data-validator';
 
 export class ContactDialog {

@@ -17,6 +17,7 @@ export class GroupedContacts {
       const groups = App.contactsState.groupNames;
       groups.forEach((group) => {
         const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
+        contactsGroup.id = `group-list-${group}`;
         const header = this.getGroupHeader(group, contactsGroup.id);
         groupedContacts[group].forEach((contact) => {
           contactsGroup.append(new ContactDisplay(contact).item);
@@ -53,7 +54,7 @@ export class GroupedContacts {
         if (targetList) {
           targetList.classList.toggle('hidden');
           const button = event.currentTarget as HTMLButtonElement;
-          button.textContent = targetList.classList.contains('hidden') ? '▸' : '▾';
+          button.textContent = targetList.classList.contains('hidden') ? '▴' : '▾';
         }
       },
     });
