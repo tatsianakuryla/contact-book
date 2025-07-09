@@ -8,6 +8,7 @@ import { defaultContactValue } from '../../../constants/constants';
 import { CustomSelect } from '../custom-select/custom-select';
 import { App } from '../../../App';
 import { GroupedContacts } from '../contacts/grouped-contacts';
+import { ContactDataValidator } from '../../validator/contact-data-validator';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -15,8 +16,10 @@ export class ContactDialog {
   private readonly _heading: HTMLElement;
   private readonly _nameInput: HTMLInputElement;
   private readonly _phoneInput: HTMLInputElement;
+  private readonly _nameErrorBox: HTMLDivElement;
+  private readonly _phoneErrorBox: HTMLDivElement;
   private readonly _select: CustomSelect;
-  private current: Contact = defaultContactValue;
+  private currentContact: Contact = defaultContactValue;
 
   constructor(groups: Group[]) {
     this._dialog = ElementFactory.create('dialog', ['contact-dialog']);
@@ -25,6 +28,8 @@ export class ContactDialog {
     this._heading = ElementFactory.create('h2', ['contact-form__heading']);
     this._nameInput = this.createNameInput();
     this._phoneInput = this.createTelephoneNumberInput();
+    this._nameErrorBox = this.createNameErrorBox();
+    this._phoneErrorBox = this.createNumberErrorBox();
     this._select = new CustomSelect(defaultContactValue, groups);
 
     const saveBtn = ButtonFactory.create({
@@ -41,8 +46,8 @@ export class ContactDialog {
 
     this._form.append(
       this._heading,
-      this._nameInput,
-      this._phoneInput,
+      this.createNameBox(),
+      this.createPhoneBox(),
       this._select.container,
       saveBtn,
       cancelBtn,
@@ -54,7 +59,7 @@ export class ContactDialog {
   }
 
   public open(contact: Contact = defaultContactValue): void {
-    this.current = contact;
+    this.currentContact = contact;
 
     const isNew = contact.id === '';
     this._heading.textContent = isNew ? 'Добавление контакта' : 'Редактирование контакта';
@@ -71,26 +76,6 @@ export class ContactDialog {
     this._dialog.close();
   }
 
-  private onSubmit(event: SubmitEvent): void {
-    event.preventDefault();
-
-    const next = App.contactsState.completeNewContact(
-      this.current,
-      this._nameInput.value,
-      this._phoneInput.value,
-      this._select.value,
-    );
-
-    if (!this.current.id) {
-      App.contactsState.addItem(next);
-    } else {
-      App.contactsState.editContact(next);
-    }
-
-    GroupedContacts.display();
-    this.close();
-  }
-
   private createNameInput(): HTMLInputElement {
     return InputFactory.create({
       type: 'text',
@@ -99,6 +84,16 @@ export class ContactDialog {
       placeholder: 'Введите ФИО',
       modifier: 'contact-form__name',
     });
+  }
+
+  private createNumberErrorBox(): HTMLDivElement {
+    return ElementFactory.create('div', ['contact-form__error-box']);
+  }
+
+  private createNameBox(): HTMLDivElement {
+    const container = ElementFactory.create('div', ['contact-form__name-box', 'flex']);
+    container.append(this._nameInput, this._nameErrorBox);
+    return container;
   }
 
   private createTelephoneNumberInput(): HTMLInputElement {
@@ -111,5 +106,42 @@ export class ContactDialog {
     });
     IMask(input, { mask: '+{7} (000) 000-00-00' });
     return input;
+  }
+
+  private createNameErrorBox(): HTMLDivElement {
+    return ElementFactory.create('div', ['contact-form__error-box']);
+  }
+
+  private createPhoneBox(): HTMLDivElement {
+    const container = ElementFactory.create('div', ['contact-form__phone-box', 'flex']);
+    container.append(this._phoneInput, this._phoneErrorBox);
+    return container;
+  }
+
+  private onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+
+    const newContact = App.contactsState.completeNewContact(
+      this.currentContact,
+      this._nameInput.value,
+      this._phoneInput.value,
+      this._select.value,
+    );
+
+    const validationResult = ContactDataValidator.validate(newContact, this._phoneInput);
+
+    if (validationResult.name || validationResult.number) {
+      this._nameErrorBox.textContent = validationResult.name ?? '';
+      this._phoneErrorBox.textContent = validationResult.number ?? '';
+      return;
+    }
+    if (!this.currentContact.id) {
+      App.contactsState.addItem(newContact);
+    } else {
+      App.contactsState.editContact(newContact);
+    }
+
+    GroupedContacts.display();
+    this.close();
   }
 }
