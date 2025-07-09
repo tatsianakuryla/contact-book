@@ -30,7 +30,7 @@ export class ContactDialog {
     this._phoneInput = this.createTelephoneNumberInput();
     this._nameErrorBox = this.createNameErrorBox();
     this._phoneErrorBox = this.createNumberErrorBox();
-    this._select = new CustomSelect(defaultContactValue, groups);
+    this._select = new CustomSelect(groups);
 
     const saveBtn = ButtonFactory.create({
       type: 'submit',
@@ -59,6 +59,7 @@ export class ContactDialog {
   }
 
   public open(contact: Contact = defaultContactValue): void {
+    this.clearErrors();
     this.currentContact = contact;
 
     const isNew = contact.id === '';
@@ -71,6 +72,7 @@ export class ContactDialog {
   }
 
   public close(): void {
+    this.clearErrors();
     this._form.reset();
     this._select.reset();
     this._dialog.close();
@@ -116,6 +118,11 @@ export class ContactDialog {
     const container = ElementFactory.create('div', ['contact-form__phone-box', 'flex']);
     container.append(this._phoneInput, this._phoneErrorBox);
     return container;
+  }
+
+  private clearErrors(): void {
+    this._nameErrorBox.textContent = '';
+    this._phoneErrorBox.textContent = '';
   }
 
   private onSubmit(event: SubmitEvent): void {

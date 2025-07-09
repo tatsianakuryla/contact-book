@@ -3,21 +3,17 @@ import { ButtonFactory } from '../button/button-factory';
 import type { Contact, Group } from '../../../types/types';
 
 export class CustomSelect {
+  private _initialIndex = -1;
   private readonly _container: HTMLDivElement;
   private readonly _trigger: HTMLButtonElement;
   private readonly _listBox: HTMLDivElement;
   private _options: HTMLButtonElement[] = [];
   private readonly _emptyGroupError: HTMLDivElement;
   private _selectedIndex: number = -1;
-  private _contact: Contact;
   private readonly _groups: Group[];
 
-  constructor(contact: Contact, groups: Group[]) {
-    this._contact = contact;
+  constructor(groups: Group[]) {
     this._groups = groups;
-    this._selectedIndex = this._groups.findIndex(
-      (group) => group.name === this._contact.group.name,
-    );
 
     this._container = ElementFactory.create('div', ['contact-form__custom-select']);
 
@@ -72,9 +68,14 @@ export class CustomSelect {
   }
 
   public reset(): void {
-    this._selectedIndex = -1;
-    this._trigger.textContent = 'Выберите группу';
+    this._selectedIndex = this._initialIndex;
+    if (this._initialIndex >= 0) {
+      this._trigger.textContent = this._groups[this._initialIndex].name;
+    } else {
+      this._trigger.textContent = 'Выберите группу';
+    }
     this._listBox.classList.add('hidden');
+    this._emptyGroupError.textContent = '';
   }
 
   private toggleList(): void {
@@ -105,33 +106,25 @@ export class CustomSelect {
   }
 
   private onOptionSelect(index: number): void {
-    if (index < 0) {
-      this.reset();
-      this._contact.group = {
-        name: '',
-      };
-    } else {
-      this.select(index);
-    }
+    this.select(index);
     this.closeList();
   }
 
   public setContact(contact: Contact): void {
-    this._contact = contact;
-    const index = this._groups.findIndex((group) => group.name === contact.group.name);
+    const index = this._groups.findIndex((g) => g.name === contact.group.name);
+    this._initialIndex = index;
+    this._selectedIndex = index;
+
     if (index >= 0) {
-      this._selectedIndex = index;
       this._trigger.textContent = this._groups[index].name;
     } else {
-      this.reset();
+      this._trigger.textContent = 'Выберите группу';
     }
   }
 
   public select(index: number): void {
     this._selectedIndex = index;
-    const group = this._groups[index];
-    this._trigger.textContent = group.name;
-    this._contact.group = group;
+    this._trigger.textContent = index >= 0 ? this._groups[index].name : 'Выберите группу';
   }
 
   private focusOption(index: number): void {
