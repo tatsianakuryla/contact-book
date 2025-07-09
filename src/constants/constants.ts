@@ -4,3 +4,12 @@ export const defaultContactValue = {
   telephoneNumber: '',
   group: { name: '' },
 };
+
+export const defaultGroups = [
+  {
+    name: 'Друзья',
+  },
+  {
+    name: 'Коллеги',
+  },
+];

@@ -1,6 +1,7 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import { ButtonFactory } from '../button/button-factory';
 import { App } from '../../../App';
+
 import { ContactDisplay } from './contact-display';
 
 export class GroupedContacts {
@@ -8,7 +9,7 @@ export class GroupedContacts {
   public static display(): HTMLElement {
     this.contactsSection.replaceChildren();
     if (App.contactsState.items.length === 0) {
-      const text = ElementFactory.create('p', ['main__empty-text']);
+      const text = ElementFactory.create('p', ['contacts__section__empty-text']);
       text.textContent = 'Список контактов пуст';
       this.contactsSection.append(text);
     } else {
@@ -16,10 +17,7 @@ export class GroupedContacts {
       const groups = App.contactsState.groupNames;
       groups.forEach((group) => {
         const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
-        contactsGroup.id = `group-list-${group}`;
-
         const header = this.getGroupHeader(group, contactsGroup.id);
-
         groupedContacts[group].forEach((contact) => {
           contactsGroup.append(new ContactDisplay(contact).item);
         });
