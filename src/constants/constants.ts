@@ -13,3 +13,5 @@ export const defaultGroups = [
     name: 'Коллеги',
   },
 ];
+
+export const defaultGroupValue = { name: '' };

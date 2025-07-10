@@ -1,10 +1,7 @@
 import { ElementFactory } from '../element-factory/element-factory';
 import type { Group } from '../../../types/types';
 import { ButtonFactory } from '../button/button-factory';
-import { GroupedContacts } from '../contacts/grouped-contacts';
 import { App } from '../../../App';
-
-import { GroupsList } from './groups';
 
 export class GroupDisplay {
   private _item: HTMLLIElement = ElementFactory.create('li', ['group', 'flex']);
@@ -31,11 +28,7 @@ export class GroupDisplay {
       textContent: 'X',
       modifier: 'group__delete',
       onClick: () => {
-        //TODO
-        App.contactsState.removeContactsWithGroup(this._group);
-        App.groupsState.removeGroup(this._group.name);
-        GroupedContacts.update();
-        GroupsList.update();
+        App.notificationDialog.open(this._group);
       },
     });
   }
