@@ -1,7 +1,7 @@
-import { ElementFactory } from '../element-factory/element-factory';
-import { ContainerFactory } from '../container-factory/container-factory';
-import { ButtonFactory } from '../button/button-factory';
-import { App } from '../../../App';
+import { ElementFactory } from '../../components/ui/element-factory/element-factory';
+import { ContainerFactory } from '../../components/ui/container-factory/container-factory';
+import { ButtonFactory } from '../../components/ui/button/button-factory';
+import { App } from '../../App';
 
 export class Header {
   private static readonly buttonLabels = {

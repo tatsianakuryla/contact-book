@@ -1,6 +1,6 @@
-import { ElementFactory } from '../element-factory/element-factory';
-import { ContainerFactory } from '../container-factory/container-factory';
-import { GroupedContacts } from '../contacts/grouped-contacts';
+import { ElementFactory } from '../../components/ui/element-factory/element-factory';
+import { ContainerFactory } from '../../components/ui/container-factory/container-factory';
+import { GroupedContacts } from '../../components/ui/contacts/grouped-contacts';
 
 export class Main {
   private readonly _main: HTMLElement;

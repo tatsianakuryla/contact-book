@@ -1,7 +1,7 @@
-import { Header } from '../components/ui/header/header';
-import { Main } from '../components/ui/main/main';
+import { Header } from '../header/header';
+import { Main } from '../main/main';
 
-export class BaseView {
+export class BaseLayout {
   private readonly _fragment = new DocumentFragment();
 
   constructor() {

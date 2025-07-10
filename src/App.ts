@@ -1,6 +1,6 @@
 import { ContactsState } from './states/contacts-state';
 import { GroupsState } from './states/groups-state';
-import { BaseView } from './views/base-view';
+import { BaseLayout } from './layout/base-layout/base-layout';
 import { ContactDialog } from './components/ui/contacts/contact-dialog';
 import { GroupsDialog } from './components/ui/groups/groups-dialog';
 import { NotificationDialog } from './components/ui/groups/notification-display';
@@ -13,6 +13,6 @@ export class App {
   public static readonly notificationDialog = new NotificationDialog();
 
   render(app: HTMLElement): void {
-    app.append(new BaseView().fragment);
+    app.append(new BaseLayout().fragment);
   }
 }
