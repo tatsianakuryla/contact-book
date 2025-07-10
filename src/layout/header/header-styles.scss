@@ -1,0 +1,61 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  background-color: $color-white;
+}
+
+.header__container {
+  gap: $header-gap;
+  padding-top: $header-padding-y;
+  padding-bottom: $header-padding-y;
+}
+
+.header__heading-wrapper {
+  gap: $header-gap;
+  align-items: center;
+  justify-content: center;
+  margin-right: auto;
+}
+
+.header__heading {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 120%;
+  color: $color-blue;
+}
+
+.header__add-contact-button,
+.header__contact-groups-button {
+  border: none;
+  border-radius: $header-border-radius;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 130%;
+  text-align: center;
+  color: $color-white;
+  transition: background-color $transition-base;
+}
+
+.header__add-contact-button {
+  padding: $header-add-button-padding-y $header-add-button-padding-x-right
+    $header-add-button-padding-y $header-add-button-padding-x-left;
+  background-color: $color-pink;
+  background-image: url('/icons/add.svg');
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: calc(100% - $header-add-button-icon-offset);
+
+  @include hover-supported($color-pink-hover);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.header__contact-groups-button {
+  padding: $header-groups-button-padding-y $header-groups-button-padding-x;
+  background-color: $color-blue;
+
+  @include hover-supported($color-blue-hover);
+}

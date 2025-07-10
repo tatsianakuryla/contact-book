@@ -1,0 +1,41 @@
+// Цвета
+$color-blue: #005bfe;
+$color-blue-hover: #0047c6;
+$color-pink: #f81155;
+$color-pink-hover: #d1003e;
+$color-white: #fff;
+$color-empty-text: #acadae;
+$color-main-background: #f6f7f9;
+
+// Брейкпоинты
+$breakpoint-mobile: 540px;
+
+// Отступы и размеры header
+$header-gap: 1rem;
+$header-border-radius: 0.375rem;
+$header-height: 4.4375rem;
+$header-padding-y: 1rem;
+
+// Кнопка "Добавить контакт" в header
+$header-add-button-padding-y: 0.625rem;
+$header-add-button-padding-x-right: 2.875rem;
+$header-add-button-padding-x-left: 1.3125rem;
+$header-add-button-icon-offset: 1rem;
+
+// Кнопка "Группы" в header
+$header-groups-button-padding-y: 0.625rem;
+$header-groups-button-padding-x: 1.1875rem;
+
+// Контент main
+$main-empty-text-padding-top-desktop: 23.4375rem;
+$main-empty-text-padding-top-mobile: 15.625rem;
+$main-container-padding-top: 1.4375rem;
+
+// Кнопка "Добавить контакт" в main
+$main-add-button-padding-y: 1rem; // 16px
+$main-add-button-padding-x-left: 6.375rem; // 102px
+$main-add-button-padding-x-right: 8.0625rem; // 129px
+$main-add-button-icon-offset: 6.625rem; // 106px
+
+// Переходы
+$transition-base: 0.3s ease;

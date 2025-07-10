@@ -23,12 +23,19 @@ export class Header {
   }
 
   private static createHeading(): HTMLElement {
+    const wrapper = ElementFactory.create('div', ['header__heading-wrapper', 'flex']);
     const heading = ElementFactory.create('h1', ['header__heading']);
     heading.textContent = this.headingTextContent;
-    return heading;
+    const image = ElementFactory.createImage(
+      './icons/contact-book.svg',
+      ['header__icon'],
+      'Контактная книга',
+    );
+    wrapper.append(image, heading);
+    return wrapper;
   }
 
-  private static createAddContactButton(): HTMLButtonElement {
+  public static createAddContactButton(): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
       textContent: this.buttonLabels.addContact,

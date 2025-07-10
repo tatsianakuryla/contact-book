@@ -7,7 +7,7 @@ import { Toast } from '../toast/toast.ts';
 
 export class ContactDisplay {
   private _item: HTMLLIElement = ElementFactory.create('li', ['contact', 'flex']);
-  private _contact: Contact;
+  private readonly _contact: Contact;
 
   constructor(contact: Contact) {
     this._contact = contact;

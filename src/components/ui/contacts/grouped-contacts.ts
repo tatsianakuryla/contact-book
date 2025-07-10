@@ -5,11 +5,11 @@ import { App } from '../../../App';
 import { ContactDisplay } from './contact-display';
 
 export class GroupedContacts {
-  public static contactsSection = ElementFactory.create('section', ['contacts__section']);
+  public static contactsSection = ElementFactory.create('section', ['main__contacts-section']);
   public static update(): HTMLElement {
     this.contactsSection.replaceChildren();
     if (App.contactsState.items.length === 0) {
-      const text = ElementFactory.create('p', ['contacts__section__empty-text']);
+      const text = ElementFactory.create('p', ['main__empty-contacts-text', 'flex']);
       text.textContent = 'Список контактов пуст';
       this.contactsSection.append(text);
     } else {

@@ -9,4 +9,12 @@ export class ElementFactory {
     }
     return element;
   }
+
+  public static createImage(src: string, classNames: string[], alt = ''): HTMLImageElement {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    img.classList.add(...classNames);
+    return img;
+  }
 }

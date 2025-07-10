@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.main {
+  height: calc(100vh - $header-height);
+  background-color: $color-main-background;
+}
+
+.main__empty-contacts-text {
+  padding-top: $main-empty-text-padding-top-desktop;
+  justify-content: center;
+  height: calc(100vh - $header-height);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 130%;
+  color: $color-empty-text;
+
+  @include mobile {
+    padding-top: $main-empty-text-padding-top-mobile;
+  }
+}
+
+.main__container {
+  padding-top: $main-container-padding-top;
+  flex-direction: column;
+}
+
+.main__add-contact-button {
+  border: none;
+  border-radius: $header-border-radius;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 130%;
+  text-align: center;
+  color: $color-white;
+  transition: background-color $transition-base;
+  padding: $main-add-button-padding-y $main-add-button-padding-x-right $main-add-button-padding-y
+    $main-add-button-padding-x-left;
+  width: 100%;
+  background-color: $color-pink;
+  background-image: url('/icons/add.svg');
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: calc(100% - $main-add-button-icon-offset);
+
+  @include hover-supported($color-pink-hover);
+
+  @include desktop {
+    display: none;
+  }
+}
