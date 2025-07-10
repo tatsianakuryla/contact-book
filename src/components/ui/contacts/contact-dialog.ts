@@ -7,8 +7,9 @@ import type { Contact, Group } from '../../../types/types';
 import { defaultContactValue } from '../../../constants/constants';
 import { CustomSelect } from '../custom-select/custom-select';
 import { App } from '../../../App';
-import { GroupedContacts } from './grouped-contacts';
 import { ContactDataValidator } from '../../validator/contact-data-validator';
+
+import { GroupedContacts } from './grouped-contacts';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -35,12 +36,12 @@ export class ContactDialog {
     const saveBtn = ButtonFactory.create({
       type: 'submit',
       textContent: 'Сохранить',
-      modifier: 'contact-form__submit-',
+      modifier: 'contact-form__submit',
     });
     const cancelBtn = ButtonFactory.create({
       type: 'button',
       textContent: 'X',
-      modifier: 'contact-form__cancel-',
+      modifier: 'contact-form__cancel',
       onClick: () => this.close(),
     });
 
