@@ -6,7 +6,7 @@ import { ContactDisplay } from './contact-display';
 
 export class GroupedContacts {
   public static contactsSection = ElementFactory.create('section', ['contacts__section']);
-  public static display(): HTMLElement {
+  public static update(): HTMLElement {
     this.contactsSection.replaceChildren();
     if (App.contactsState.items.length === 0) {
       const text = ElementFactory.create('p', ['contacts__section__empty-text']);

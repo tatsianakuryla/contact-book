@@ -52,7 +52,7 @@ export class ContactDisplay {
       modifier: 'contact__delete',
       onClick: () => {
         App.contactsState.removeContact(this._contact.id);
-        GroupedContacts.display();
+        GroupedContacts.update();
       },
     });
   }

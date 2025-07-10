@@ -19,6 +19,6 @@ export class Main {
 
   public init(): void {
     this._container.append(GroupedContacts.contactsSection);
-    GroupedContacts.display();
+    GroupedContacts.update();
   }
 }

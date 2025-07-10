@@ -44,6 +44,9 @@ export class Header {
       type: 'button',
       textContent: this.buttonLabels.contactGroups,
       modifier: 'header__contact-groups',
+      onClick: () => {
+        App.groupsDialog.open();
+      },
     });
   }
 }

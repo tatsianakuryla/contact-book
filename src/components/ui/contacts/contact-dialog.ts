@@ -148,7 +148,7 @@ export class ContactDialog {
       App.contactsState.editContact(newContact);
     }
 
-    GroupedContacts.display();
+    GroupedContacts.update();
     this.close();
   }
 }
