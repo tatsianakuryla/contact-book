@@ -3,8 +3,9 @@ import { ButtonFactory } from '../button/button-factory';
 import type { Group } from '../../../types/types';
 import { ContactDataValidator } from '../../validator/group-data-validator';
 import { App } from '../../../App';
+import { Toast } from '../toast/toast';
 
-import { GroupsList } from './groups';
+import { GroupsList } from './groups-list';
 import { NewGroup } from './new-group';
 
 export class GroupsDialog {
@@ -75,6 +76,8 @@ export class GroupsDialog {
   private getNewGroupsData(): void {
     const newGroupsBoxes = Array.from(this._newGroupsList.querySelectorAll('.new-group'));
 
+    let addedCount = 0;
+
     newGroupsBoxes.forEach((box) => {
       const input = box.querySelector<HTMLInputElement>('input');
       const errorBox = box.querySelector<HTMLDivElement>('.new-group__error-box');
@@ -88,24 +91,23 @@ export class GroupsDialog {
 
       const { unique, fulled } = ContactDataValidator.validate(newGroup);
 
-      if (fulled) {
+      if (fulled || unique) {
         if (errorBox) {
-          errorBox.textContent = fulled;
-          return;
+          errorBox.textContent = fulled || unique || '';
         }
+        return;
       }
 
-      if (unique) {
-        if (errorBox) {
-          errorBox.textContent = unique;
-          return;
-        }
-      }
-      if (errorBox) {
-        box.remove();
-        App.groupsState.addItem(newGroup);
-        GroupsList.update();
-      }
+      App.groupsState.addItem(newGroup);
+      addedCount++;
+      box.remove();
     });
+
+    GroupsList.update();
+
+    if (addedCount > 0) {
+      const message = addedCount === 1 ? 'Группа успешно добавлена' : 'Группы успешно добавлены';
+      Toast.show(message);
+    }
   }
 }

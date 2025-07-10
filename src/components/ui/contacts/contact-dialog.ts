@@ -10,6 +10,7 @@ import { App } from '../../../App';
 import { ContactDataValidator } from '../../validator/contact-data-validator';
 
 import { GroupedContacts } from './grouped-contacts';
+import { Toast } from '../toast/toast.ts';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -145,8 +146,10 @@ export class ContactDialog {
     }
     if (!this.currentContact.id) {
       App.contactsState.addItem(newContact);
+      Toast.show('Контакт успешно добавлен');
     } else {
       App.contactsState.editContact(newContact);
+      Toast.show('Контакт успешно изменён');
     }
 
     GroupedContacts.update();

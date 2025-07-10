@@ -4,8 +4,9 @@ import { App } from '../../../App';
 import { GroupedContacts } from '../contacts/grouped-contacts';
 import type { Group } from '../../../types/types';
 import { defaultGroupValue } from '../../../constants/constants';
+import { Toast } from '../toast/toast';
 
-import { GroupsList } from './groups';
+import { GroupsList } from './groups-list.ts';
 
 export class NotificationDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -59,6 +60,7 @@ export class NotificationDialog {
         App.groupsState.removeGroup(this._group.name);
         GroupedContacts.update();
         GroupsList.update();
+        Toast.show('Группа успешно удалена');
         this.close();
       },
     });

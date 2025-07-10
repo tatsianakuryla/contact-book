@@ -3,6 +3,7 @@ import type { Contact } from '../../../types/types';
 import { ButtonFactory } from '../button/button-factory';
 import { App } from '../../../App';
 import { GroupedContacts } from './grouped-contacts';
+import { Toast } from '../toast/toast.ts';
 
 export class ContactDisplay {
   private _item: HTMLLIElement = ElementFactory.create('li', ['contact', 'flex']);
@@ -52,6 +53,7 @@ export class ContactDisplay {
       modifier: 'contact__delete',
       onClick: () => {
         App.contactsState.removeContact(this._contact.id);
+        Toast.show('Контакт успешно удалён');
         GroupedContacts.update();
       },
     });
