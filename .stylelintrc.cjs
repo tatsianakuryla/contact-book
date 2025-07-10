@@ -8,7 +8,12 @@ module.exports = {
     'property-no-vendor-prefix': null,
     'value-no-vendor-prefix': null,
     'selector-no-vendor-prefix': null,
-    'selector-class-pattern': '^[a-z0-9\\-]+$',
+    'selector-class-pattern': [
+      '^[a-z]([a-z0-9]*)(-[a-z0-9]+)*(__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(_[a-z0-9]+(?:-[a-z0-9]+)*)?$',
+      {
+        message: 'Expected class name in kebab-case or BEM (block__element_modifier)',
+      },
+    ],
   },
   overrides: [
     {
