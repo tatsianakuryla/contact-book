@@ -30,7 +30,7 @@ export class ContactDisplay {
   }
 
   private getContactNumber(contact: Contact): HTMLDivElement {
-    const number = ElementFactory.create('div', ['contact__number']);
+    const number = ElementFactory.create('div', ['contact__number', 'flex']);
     number.textContent = contact.telephoneNumber;
     return number;
   }

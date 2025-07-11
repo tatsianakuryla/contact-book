@@ -7,6 +7,11 @@
   right: 60px;
   z-index: 9999;
   pointer-events: none;
+
+  @media (max-width: 1440px) {
+    bottom: 16px;
+    right: 16px;
+  }
 }
 
 .toast__content {
@@ -37,7 +42,7 @@
     opacity: 0;
     transform: translateX(100%);
   }
-  
+
   to {
     opacity: 1;
     transform: translateX(0);

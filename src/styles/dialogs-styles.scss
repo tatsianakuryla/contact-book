@@ -296,6 +296,8 @@
   @include hover-supported($color-add-group-button-hover);
 }
 
+.contact__edit-button,
+.contact__delete-button,
 .new-group__delete-button,
 .group__delete-button {
   padding: 11px 8px;

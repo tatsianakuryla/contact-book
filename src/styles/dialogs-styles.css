@@ -323,6 +323,8 @@
   }
 }
 
+.contact__edit-button,
+.contact__delete-button,
 .new-group__delete-button,
 .group__delete-button {
   padding: 11px 8px;
@@ -337,6 +339,8 @@
   background-size: 25px 25px;
   transition: background-color 0.3s ease, background-image 0.3s ease;
 }
+.contact__edit-button:hover,
+.contact__delete-button:hover,
 .new-group__delete-button:hover,
 .group__delete-button:hover {
   background-color: #ea3d2f;

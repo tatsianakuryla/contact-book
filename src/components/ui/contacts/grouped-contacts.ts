@@ -5,7 +5,10 @@ import { App } from '../../../App';
 import { ContactDisplay } from './contact-display';
 
 export class GroupedContacts {
-  public static contactsSection = ElementFactory.create('section', ['main__contacts-section']);
+  public static contactsSection = ElementFactory.create('section', [
+    'main__contacts-section',
+    'flex',
+  ]);
   public static update(): HTMLElement {
     this.contactsSection.replaceChildren();
     if (App.contactsState.items.length === 0) {
@@ -16,6 +19,7 @@ export class GroupedContacts {
       const groupedContacts = App.contactsState.groupedContacts;
       const groups = App.contactsState.groupNames;
       groups.forEach((group) => {
+        const wrapper = ElementFactory.create('div', ['contacts__group-wrapper', 'flex']);
         const contactsGroup = ElementFactory.create('ul', ['contacts__group']);
         contactsGroup.id = `group-list-${group}`;
         const header = this.getGroupHeader(group, contactsGroup.id);
@@ -24,10 +28,11 @@ export class GroupedContacts {
         });
 
         if (group === '') {
-          this.contactsSection.append(contactsGroup);
+          wrapper.append(contactsGroup);
         } else {
-          this.contactsSection.append(header, contactsGroup);
+          wrapper.append(header, contactsGroup);
         }
+        this.contactsSection.append(wrapper);
       });
     }
     return this.contactsSection;
@@ -47,14 +52,23 @@ export class GroupedContacts {
   private static getOpenGroupButton(targetId: string): HTMLButtonElement {
     const toggleButton = ButtonFactory.create({
       type: 'button',
-      textContent: '▾',
+      textContent: '',
       modifier: 'contacts__group-toggle',
       onClick: (event: MouseEvent) => {
         const targetList = document.getElementById(targetId);
         if (targetList) {
           targetList.classList.toggle('hidden');
-          const button = event.currentTarget as HTMLButtonElement;
-          button.textContent = targetList.classList.contains('hidden') ? '▴' : '▾';
+          const button = event.currentTarget;
+          if (button instanceof HTMLButtonElement) {
+            const parent = button.parentElement;
+            if (targetList.classList.contains('hidden')) {
+              button.classList.add('contacts__group-toggle-button_close');
+              if (parent) parent.style.paddingBottom = '0';
+            } else {
+              button.classList.remove('contacts__group-toggle-button_close');
+              if (parent) parent.style.paddingBottom = '24px';
+            }
+          }
         }
       },
     });

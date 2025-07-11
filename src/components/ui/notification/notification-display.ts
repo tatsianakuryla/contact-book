@@ -62,6 +62,7 @@ export class NotificationDialog {
         App.groupsState.removeGroup(this._group.name);
         GroupedContacts.update();
         GroupsList.update();
+        App.groupsDialog.close();
         Toast.show('Группа успешно удалена');
         this.close();
       },
