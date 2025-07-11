@@ -11,35 +11,29 @@ export class Toast {
   }
 
   public static show(message: string): void {
-    this.createContainer();
-
-    const toast = ElementFactory.create('div', ['toast__content']);
-
-    const text = ElementFactory.create('span', ['toast__message']);
-    text.textContent = message;
-
-    toast.append(text);
-    this.container!.appendChild(toast);
-
-    setTimeout(() => {
-      toast.remove();
-    }, 4000);
+    this.displayToast(message, 4000, document.body);
   }
 
   public static showUnderModal(message: string, modal: HTMLDialogElement): void {
+    this.displayToast(message, 2000, modal);
+  }
+
+  private static displayToast(message: string, duration: number, container: HTMLElement): void {
     this.createContainer();
 
     const toast = ElementFactory.create('div', ['toast__content']);
-
     const text = ElementFactory.create('span', ['toast__message']);
     text.textContent = message;
 
     toast.append(text);
     this.container!.appendChild(toast);
-    if (this.container) modal.append(this.container);
+
+    if (!container.contains(this.container!)) {
+      container.append(this.container!);
+    }
 
     setTimeout(() => {
       toast.remove();
-    }, 2000);
+    }, duration);
   }
 }
