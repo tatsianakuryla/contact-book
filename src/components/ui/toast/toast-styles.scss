@@ -1,0 +1,52 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.toast {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toast__content {
+  text-align: center;
+  background-color: $color-white;
+  color: $color-black;
+  border-radius: $border-radius;
+  padding: 16px 16px 16px 40px;
+  box-shadow: 0 2px 8px 0 #00000026;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  opacity: 0;
+  transform: translateX(100%);
+  background-image: url("./icons/ok.svg");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 16px;
+  animation: toast-slide-in 0.4s ease forwards;
+
+  &.hide {
+    animation: toast-slide-out 0.3s ease forwards;
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-slide-out {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

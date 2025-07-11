@@ -5,6 +5,7 @@ import './layout/header/header-styles.scss';
 import './layout/main/main-styles.scss';
 import './styles/dialogs-styles.scss';
 import './components/ui/notification/notification-styles.scss';
+import './components/ui/toast/toast-styles.scss';
 
 const rootElement = document.getElementById('contact-book');
 

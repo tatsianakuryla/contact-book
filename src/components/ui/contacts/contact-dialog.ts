@@ -155,7 +155,7 @@ export class ContactDialog {
     }
     if (!this.currentContact.id) {
       App.contactsState.addItem(newContact);
-      Toast.show('Контакт успешно добавлен');
+      Toast.show('Контакт успешно создан');
     } else {
       App.contactsState.editContact(newContact);
       Toast.show('Контакт успешно изменён');
