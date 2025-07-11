@@ -11,6 +11,11 @@
   line-height: 130%;
   color: #acadae;
 }
+@media (max-width: 1440px) {
+  .main__empty-contacts-text {
+    padding-top: 18rem;
+  }
+}
 @media (max-width: 540px) {
   .main__empty-contacts-text {
     padding-top: 15.625rem;
