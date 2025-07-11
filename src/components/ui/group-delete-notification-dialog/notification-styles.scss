@@ -2,12 +2,13 @@
 @use '../../../styles/mixins' as *;
 
 .notification {
-  padding: 40px;
-  width: 393px;
+  padding: $notification-padding;
+  width: $notification-width-desktop;
   border: none;
   border-radius: $border-radius;
-  @media (max-width: 540px) {
-    width: 349px;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: $notification-width-mobile;
   }
 }
 
@@ -16,38 +17,38 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: $notification-gap;
 }
 
 .notification__close-button {
-  top: 10px;
-  right: 10px;
+  top: $notification-close-offset;
+  right: $notification-close-offset;
 }
 
 .notification__heading {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 120%;
+  font-weight: $font-weight-bold;
+  font-size: $notification-font-size-heading;
+  line-height: $notification-line-height;
   text-align: center;
   color: $color-black;
 }
 
 .notification__text {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 120%;
+  font-weight: $font-weight-regular;
+  font-size: $notification-font-size-text;
+  line-height: $notification-line-height;
   text-align: center;
   color: $color-black;
 }
 
 .notification__buttons-box {
-  gap: 12px;
+  gap: $notification-button-gap;
 }
 
 .notification__approve-button {
-  padding: 10px 15px;
+  padding: $notification-approve-padding;
 }
 
 .notification__cancel-button {
-  padding: 10px 27px 10px 20px;
+  padding: $notification-cancel-padding;
 }

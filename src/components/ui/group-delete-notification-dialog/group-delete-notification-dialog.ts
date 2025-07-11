@@ -8,9 +8,7 @@ import { Toast } from '../toast/toast';
 import { GroupsList } from '../groups/groups-list';
 
 export class GroupDeleteNotificationDialog {
-  private readonly _dialog: HTMLDialogElement = ElementFactory.create('dialog', [
-    'group-delete-notification-dialog',
-  ]);
+  private readonly _dialog: HTMLDialogElement = ElementFactory.create('dialog', ['notification']);
   private readonly _dialogWrapper: HTMLDivElement = ElementFactory.create('div', [
     'notification__wrapper',
     'flex',

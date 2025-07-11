@@ -16,6 +16,15 @@ $color-add-group-button-hover: #ced8e7;
 $color-delete-button-hover: #ea3d2f;
 $color-contact-name: #808080;
 
+// Typography
+$font-size-sm: 0.875rem;  // 14px
+$font-size-md: 1rem;      // 16px
+$font-size-lg: 1.125rem;  // 18px
+$line-height-base: 1.3;
+$line-height-tight: 1.2;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
 // Брейкпоинты
 $breakpoint-mobile: 540px;
 
@@ -67,3 +76,16 @@ $toast-icon-offset-x: 1rem; // 16px
 $toast-animation-in: 0.4s ease forwards;
 $toast-animation-out: 0.3s ease forwards;
 $toast-icon-url: './icons/ok.svg';
+
+// Notification Dialog
+$notification-padding: 2.5rem; // 40px
+$notification-width-desktop: 24.5625rem; // 393px
+$notification-width-mobile: 21.8125rem; // 349px
+$notification-gap: 1.5rem; // 24px
+$notification-font-size-heading: 1.125rem; // 18px
+$notification-font-size-text: 0.875rem; // 14px
+$notification-line-height: 120%;
+$notification-button-gap: 0.75rem; // 12px
+$notification-approve-padding: 0.625rem 0.9375rem; // 10px 15px
+$notification-cancel-padding: 0.625rem 1.6875rem 0.625rem 1.25rem; // 10px 27px 10px 20px
+$notification-close-offset: 0.625rem; // 10px
