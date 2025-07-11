@@ -4,7 +4,7 @@ import './styles/main.scss';
 import './layout/header/header-styles.scss';
 import './layout/main/main-styles.scss';
 import './styles/dialogs-styles.scss';
-import './components/ui/notification/notification-styles.scss';
+import './components/ui/group-delete-notification-dialog/notification-styles.scss';
 import './components/ui/toast/toast-styles.scss';
 import './styles/main-contacts-styles.scss';
 
