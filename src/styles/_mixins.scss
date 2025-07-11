@@ -11,6 +11,13 @@
   }
 }
 
+@mixin focus-supported($focus-color) {
+  &:focus,
+  &:focus-visible {
+    background-color: $focus-color;
+  }
+}
+
 @mixin mobile {
   @media (max-width: 540px) {
     @content;

@@ -9,7 +9,6 @@
 .main__empty-contacts-text {
   padding-top: $main-empty-text-padding-top-desktop;
   justify-content: center;
-  height: calc(100vh - $header-height);
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 130%;
@@ -27,25 +26,32 @@
 
 .main__add-contact-button {
   border: none;
-  border-radius: $header-border-radius;
+  border-radius: $border-radius;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 130%;
   text-align: center;
   color: $color-white;
   transition: background-color $transition-base;
-  padding: $main-add-button-padding-y $main-add-button-padding-x-right $main-add-button-padding-y
-    $main-add-button-padding-x-left;
+  padding: $main-add-button-padding-y $main-add-button-padding-x-right $main-add-button-padding-y $main-add-button-padding-x-left;
   width: 100%;
   background-color: $color-pink;
   background-image: url('/icons/add.svg');
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: calc(100% - $main-add-button-icon-offset);
+  max-width: 100%;
 
   @include hover-supported($color-pink-hover);
 
   @include desktop {
     display: none;
   }
+  
+  @media (max-width: 373px) {
+    padding-left: 5px;
+    padding-right: 5px;
+    background-position-x: calc(100% - 25px);
+  }
 }
+

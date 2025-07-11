@@ -10,7 +10,7 @@ import { App } from '../../../App';
 import { ContactDataValidator } from '../../validator/contact-data-validator';
 
 import { GroupedContacts } from './grouped-contacts';
-import { Toast } from '../toast/toast.ts';
+import { Toast } from '../toast/toast';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -25,9 +25,12 @@ export class ContactDialog {
 
   constructor(groups: Group[]) {
     this._dialog = ElementFactory.create('dialog', ['contact-dialog']);
-    this._form = ElementFactory.create('form', ['contact-form']);
+    const wrapper = ElementFactory.create('div', ['contact-dialog__form-wrapper']);
+    this._form = ElementFactory.create('form', ['contact-form', 'flex']);
 
-    this._heading = ElementFactory.create('h2', ['contact-form__heading']);
+    const headingWrapper = ElementFactory.create('div', ['contact-dialog__heading-wrapper']);
+    this._heading = ElementFactory.create('h2', ['contact-dialog__heading']);
+    headingWrapper.append(this._heading);
     this._nameInput = this.createNameInput();
     this._phoneInput = this.createTelephoneNumberInput();
     this._nameErrorBox = this.createNameErrorBox();
@@ -41,13 +44,12 @@ export class ContactDialog {
     });
     const cancelBtn = ButtonFactory.create({
       type: 'button',
-      textContent: 'X',
+      textContent: '',
       modifier: 'contact-form__cancel',
       onClick: () => this.close(),
     });
 
     this._form.append(
-      this._heading,
       this.createNameBox(),
       this.createPhoneBox(),
       this._select.container,
@@ -55,7 +57,8 @@ export class ContactDialog {
       cancelBtn,
     );
     this._form.addEventListener('submit', this.onSubmit.bind(this));
-    this._dialog.append(this._form);
+    wrapper.append(headingWrapper, this._form);
+    this._dialog.append(wrapper);
 
     document.body.append(this._dialog);
   }
@@ -125,6 +128,8 @@ export class ContactDialog {
   private clearErrors(): void {
     this._nameErrorBox.textContent = '';
     this._phoneErrorBox.textContent = '';
+    this._nameInput.classList.remove('input-error');
+    this._phoneInput.classList.remove('input-error');
   }
 
   private onSubmit(event: SubmitEvent): void {
@@ -142,6 +147,9 @@ export class ContactDialog {
     if (validationResult.name || validationResult.number) {
       this._nameErrorBox.textContent = validationResult.name ?? '';
       this._phoneErrorBox.textContent = validationResult.number ?? '';
+
+      this._nameInput.classList.toggle('input-error', Boolean(validationResult.name));
+      this._phoneInput.classList.toggle('input-error', Boolean(validationResult.number));
       return;
     }
     if (!this.currentContact.id) {

@@ -26,6 +26,7 @@
 .header__contact-groups-button {
   border: none;
   border-radius: 0.375rem;
+  outline: none;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 130%;
@@ -41,6 +42,9 @@
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: calc(100% - 1rem);
+}
+.header__add-contact-button:focus, .header__add-contact-button:focus-visible {
+  background-color: #d1003e;
 }
 @media (hover: hover) {
   .header__add-contact-button:hover {
@@ -61,6 +65,9 @@
 .header__contact-groups-button {
   padding: 0.625rem 1.1875rem;
   background-color: #005bfe;
+}
+.header__contact-groups-button:focus, .header__contact-groups-button:focus-visible {
+  background-color: #0047c6;
 }
 @media (hover: hover) {
   .header__contact-groups-button:hover {

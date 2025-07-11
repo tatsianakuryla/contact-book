@@ -15,7 +15,7 @@ export class CustomSelect {
   constructor(groups: Group[]) {
     this._groups = groups;
 
-    this._container = ElementFactory.create('div', ['contact-form__custom-select']);
+    this._container = ElementFactory.create('div', ['contact-form__custom-select', 'flex']);
 
     this._trigger = ButtonFactory.create({
       type: 'button',
@@ -25,7 +25,7 @@ export class CustomSelect {
       onClick: () => this.toggleList(),
     });
 
-    this._listBox = ElementFactory.create('div', ['contact-form__options-list', 'hidden']);
+    this._listBox = ElementFactory.create('div', ['contact-form__options-list', 'hidden', 'flex']);
     this._listBox.setAttribute('tabindex', '-1');
     this._container.append(this._trigger, this._listBox);
 
@@ -33,7 +33,7 @@ export class CustomSelect {
       const noneOption = ButtonFactory.create({
         type: 'button',
         textContent: 'Без группы',
-        modifier: 'contact-form__option--none',
+        modifier: 'contact-form__option-none',
         onClick: () => this.onOptionSelect(-1),
       });
       noneOption.setAttribute('tabindex', '-1');
@@ -93,12 +93,14 @@ export class CustomSelect {
     }
     this._listBox.classList.remove('hidden');
     const index = this._selectedIndex >= 0 ? this._selectedIndex : 0;
+    this._trigger.classList.add('contact-form__trigger-button_open');
     this.focusOption(index);
   }
 
   private closeList(): void {
     this._listBox.classList.add('hidden');
     this._trigger.focus();
+    this._trigger.classList.remove('contact-form__trigger-button_open');
   }
 
   private isOpen(): boolean {

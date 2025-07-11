@@ -3,7 +3,7 @@ import type { Contact } from '../../../types/types';
 import { ButtonFactory } from '../button/button-factory';
 import { App } from '../../../App';
 import { GroupedContacts } from './grouped-contacts';
-import { Toast } from '../toast/toast.ts';
+import { Toast } from '../toast/toast';
 
 export class ContactDisplay {
   private _item: HTMLLIElement = ElementFactory.create('li', ['contact', 'flex']);

@@ -28,7 +28,8 @@
 .header__add-contact-button,
 .header__contact-groups-button {
   border: none;
-  border-radius: $header-border-radius;
+  border-radius: $border-radius;
+  outline: none;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 130%;
@@ -46,6 +47,7 @@
   background-position-y: center;
   background-position-x: calc(100% - $header-add-button-icon-offset);
 
+  @include focus-supported($color-pink-hover);
   @include hover-supported($color-pink-hover);
 
   @include mobile {
@@ -57,5 +59,6 @@
   padding: $header-groups-button-padding-y $header-groups-button-padding-x;
   background-color: $color-blue;
 
+  @include focus-supported($color-blue-hover);
   @include hover-supported($color-blue-hover);
 }
