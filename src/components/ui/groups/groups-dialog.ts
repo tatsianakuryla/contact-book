@@ -112,7 +112,7 @@ export class GroupsDialog {
 
     if (addedCount > 0) {
       const message = addedCount === 1 ? 'Группа успешно добавлена' : 'Группы успешно добавлены';
-      Toast.show(message);
+      Toast.showUnderModal(message, this._dialog);
     }
   }
 }

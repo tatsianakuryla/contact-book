@@ -25,4 +25,21 @@ export class Toast {
       toast.remove();
     }, 4000);
   }
+
+  public static showUnderModal(message: string, modal: HTMLDialogElement): void {
+    this.createContainer();
+
+    const toast = ElementFactory.create('div', ['toast__content']);
+
+    const text = ElementFactory.create('span', ['toast__message']);
+    text.textContent = message;
+
+    toast.append(text);
+    this.container!.appendChild(toast);
+    if (this.container) modal.append(this.container);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 2000);
+  }
 }
