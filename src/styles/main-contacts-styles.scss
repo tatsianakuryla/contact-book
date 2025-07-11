@@ -12,7 +12,7 @@
 }
 
 .contacts__group-header {
-  justify-content:  space-between;
+  justify-content: space-between;
   padding-bottom: 24px;
 }
 
@@ -64,7 +64,7 @@
   line-height: 120%;
   color: $color-black;
   @media (max-width: 540px) {
-   margin-right: auto;
+    margin-right: auto;
   }
 }
 
@@ -78,15 +78,15 @@
 .contacts__group-toggle-button {
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("./icons/arrow-up.svg");
+  background-image: url('./icons/arrow-up.svg');
   height: 24px;
   width: 24px;
   border: none;
-  background-color:  transparent;
+  background-color: transparent;
 }
 
 .contacts__group-toggle-button_close {
-  background-image: url("./icons/arrow-down.svg");
+  background-image: url('./icons/arrow-down.svg');
 }
 
 .contact__edit-button {

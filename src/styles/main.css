@@ -1,17 +1,13 @@
 @font-face {
-  font-family: 'Circe.Regular';
-  src:
-    url('../assets/fonts/circe-regular.woff2') format('woff2'),
-    url('../assets/fonts/circe-regular.woff') format('woff');
+  font-family: "Circe.Regular";
+  src: url("../assets/fonts/circe-regular.woff2") format("woff2"), url("../assets/fonts/circe-regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Circe.Bold';
-  src:
-    url('../assets/fonts/circe-bold.woff2') format('woff2'),
-    url('../assets/fonts/circe-bold.woff') format('woff');
+  font-family: "Circe.Bold";
+  src: url("../assets/fonts/circe-bold.woff2") format("woff2"), url("../assets/fonts/circe-bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -21,7 +17,7 @@ html {
 }
 
 body {
-  font-family: 'Circe.Regular', Arial, sans-serif;
+  font-family: "Circe.Regular", Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

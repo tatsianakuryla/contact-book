@@ -260,8 +260,8 @@
 .new-groups {
   margin: 0 0 auto;
   padding: 0 24px;
-          flex-direction: column;
-          gap: 16px;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .groups__section {
@@ -275,7 +275,7 @@
 .group {
   justify-content: space-between;
   gap: 12px;
-     width:  100%;
+  width: 100%;
 }
 
 .notification__cancel-button,
@@ -317,7 +317,6 @@
   &:hover {
     background-color: $color-delete-button-hover;
     background-image: url('/icons/delete-hover.svg');
-       background-size: 25px 25px;
+    background-size: 25px 25px;
   }
 }
-
