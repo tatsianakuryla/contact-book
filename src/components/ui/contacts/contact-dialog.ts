@@ -64,6 +64,7 @@ export class ContactDialog {
   }
 
   public open(contact: Contact = defaultContactValue): void {
+    this._select.update(App.groupsState.items);
     this.clearErrors();
     this.currentContact = contact;
 

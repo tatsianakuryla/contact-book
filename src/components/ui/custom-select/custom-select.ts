@@ -129,6 +129,43 @@ export class CustomSelect {
     this._trigger.textContent = index >= 0 ? this._groups[index].name : 'Выберите группу';
   }
 
+  public update(groups: Group[]): void {
+    const previous = this.value;
+
+    this._options.forEach((button) => button.remove());
+    this._options = [];
+
+    this._groups.length = 0;
+    this._groups.push(...groups);
+
+    if (groups.length) {
+      const noneOption = ButtonFactory.create({
+        type: 'button',
+        textContent: 'Без группы',
+        modifier: 'contact-form__option-none',
+        onClick: () => this.onOptionSelect(-1),
+      });
+      noneOption.setAttribute('tabindex', '-1');
+      this._listBox.append(noneOption);
+      this._options.push(noneOption);
+    }
+
+    groups.forEach((group, index) => {
+      const option = ButtonFactory.create({
+        type: 'button',
+        textContent: group.name,
+        modifier: 'contact-form__option',
+        onClick: () => this.onOptionSelect(index),
+      });
+      option.setAttribute('tabindex', '-1');
+      this._listBox.append(option);
+      this._options.push(option);
+    });
+
+    const index = this._groups.findIndex((group) => group.name === previous);
+    this.select(index);
+  }
+
   private focusOption(index: number): void {
     this._options[index].focus();
   }
