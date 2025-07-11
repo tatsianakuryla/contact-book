@@ -8,9 +8,9 @@ import { defaultContactValue } from '../../../constants/constants';
 import { CustomSelect } from '../custom-select/custom-select';
 import { App } from '../../../App';
 import { ContactDataValidator } from '../../validator/contact-data-validator';
+import { Toast } from '../toast/toast';
 
 import { GroupedContacts } from './grouped-contacts';
-import { Toast } from '../toast/toast';
 
 export class ContactDialog {
   private readonly _dialog: HTMLDialogElement;

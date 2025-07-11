@@ -1,7 +1,8 @@
-@use '../../../styles/_variables.scss' as *;
-@use '../../../styles/mixins' as *;
+@use 'variables' as *;
+@use 'mixins' as *;
 
-.contact-dialog {
+.contact-dialog,
+.groups-dialog {
   width: 100%;
   max-width: none;
   margin: 0;
@@ -14,7 +15,8 @@
   }
 }
 
-.contact-dialog__form-wrapper {
+.contact-dialog__form-wrapper,
+.groups-dialog__wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,10 +58,12 @@
   }
 }
 
+.groups-dialog__heading-wrapper,
 .contact-dialog__heading-wrapper {
   border-bottom: 1px solid $color-contacts-border;
 }
 
+.groups-dialog__heading,
 .contact-dialog__heading {
   padding: 1.5rem;
   font-weight: 700;
@@ -74,16 +78,19 @@
   padding: 1.5rem;
 }
 
+.new-group,
 .contact-form__name-box,
 .contact-form__phone-box {
   flex-direction: column;
 }
 
+.new-group__item-input,
+.group__name,
 .contact-form__trigger-button,
 .contact-form__name-input,
 .contact-form__number-input {
   padding: 9px 11px;
-  width:  100%;
+  width: 100%;
   outline: none;
   border: 1px solid $color-input-background;
   border-radius: $border-radius;
@@ -114,6 +121,7 @@
   }
 }
 
+.new-group__error-box,
 .contact-form__empty-group-error,
 .contact-form__error-box {
   padding-top: 4px;
@@ -134,7 +142,7 @@
   background-image: url('/icons/arrow-up.svg');
   background-repeat: no-repeat;
   background-position-y: center;
-  background-position-x: calc(100% - 12px) ;
+  background-position-x: calc(100% - 12px);
   transition: background-image $transition-base;
 }
 
@@ -142,12 +150,13 @@
   background-image: url('/icons/arrow-down.svg');
 }
 
+.groups-dialog__cancel-button,
 .contact-form__cancel-button {
   position: absolute;
   top: 24px;
   right: 24px;
   padding: 5px;
-  outline:  none;
+  outline: none;
   border: none;
   border-radius: $border-radius;
   height: 24px;
@@ -160,11 +169,11 @@
   background-color: inherit;
 
   &:focus {
-    background-color:  $color-cancel-button-hover;
+    background-color: $color-cancel-button-hover;
   }
 
   &:hover {
-    background-color:  $color-cancel-button-hover;
+    background-color: $color-cancel-button-hover;
   }
 }
 
@@ -176,13 +185,15 @@
 
 .contact-form__options-list {
   flex-direction: column;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 .contact-form__option-none-button,
 .contact-form__option-button {
   padding: 11px 12px;
   border: none;
-  outline:  none;
+  outline: none;
   max-width: 312px;
   cursor: default;
   background-color: $color-input-background;
@@ -191,29 +202,35 @@
   font-size: 14px;
   line-height: 130%;
   text-align: left;
-  transition:  background-color $transition-base;
+  transition: background-color $transition-base;
 
   &:last-child {
-    border-bottom-left-radius:  $border-radius;
-    border-bottom-right-radius:  $border-radius;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
   }
 
   &:first-child {
-    border-top-left-radius:  $border-radius;
-    border-top-right-radius:  $border-radius;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
 
   &:focus {
-    background-color:  $color-cancel-button-hover;
+    background-color: $color-cancel-button-hover;
   }
 
   &:hover {
-    background-color:  $color-cancel-button-hover;
+    background-color: $color-cancel-button-hover;
   }
 }
 
-.contact-form__submit-button {
+.groups-dialog__add-group-box {
   align-self: flex-end;
+  padding-right: 24px;
+  gap: 12px;
+}
+
+.groups-dialog__save-group-button,
+.contact-form__submit-button {
   border: none;
   border-radius: $border-radius;
   outline: none;
@@ -229,3 +246,73 @@
   @include focus-supported($color-blue-hover);
   @include hover-supported($color-blue-hover);
 }
+
+.contact-form__submit-button {
+  align-self: flex-end;
+}
+
+.groups-dialog__wrapper {
+  padding-bottom: 24px;
+}
+
+.new-groups {
+  margin: 0 0 auto;
+  padding: 0 24px;
+          flex-direction: column;
+          gap: 16px;
+}
+
+.groups__section {
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 24px 24px 16px;
+}
+
+.new-group__input-wrapper,
+.group {
+  justify-content: space-between;
+  gap: 12px;
+     width:  100%;
+}
+
+.groups-dialog__add-group-button {
+  border: none;
+  border-radius: $border-radius;
+  outline: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 130%;
+  text-align: center;
+  color: $color-blue;
+  transition: background-color $transition-base;
+  padding: 10px 14px 10px 21px;
+  background-color: transparent;
+
+  @include focus-supported($color-add-group-button-hover);
+  @include hover-supported($color-add-group-button-hover);
+}
+
+.new-group__delete-button,
+.group__delete-button {
+  padding: 11px 8px;
+  height: 38px;
+  width: 38px;
+  background-color: inherit;
+  border: 1px solid $color-input-background;
+  border-radius: $border-radius;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('/icons/delete.svg');
+  background-size: 25px 25px;
+  transition:
+    background-color $transition-base,
+    background-image $transition-base;
+
+  &:hover {
+    background-color: $color-delete-button-hover;
+    background-image: url('/icons/delete-hover.svg');
+       background-size: 25px 25px;
+  }
+}
+

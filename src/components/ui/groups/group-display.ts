@@ -25,7 +25,7 @@ export class GroupDisplay {
   private getDeleteGroupButton(): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
-      textContent: 'X',
+      textContent: '',
       modifier: 'group__delete',
       onClick: () => {
         App.notificationDialog.open(this._group);

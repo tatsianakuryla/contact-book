@@ -15,17 +15,21 @@ export class GroupsDialog {
 
   constructor() {
     this._dialog = ElementFactory.create('dialog', ['groups-dialog']);
+    const wrapper = ElementFactory.create('div', ['groups-dialog__wrapper']);
+    const headingWrapper = ElementFactory.create('div', ['groups-dialog__heading-wrapper']);
     this._heading = ElementFactory.create('h2', ['groups-dialog__heading']);
+    headingWrapper.append(this._heading);
     this._heading.textContent = 'Группы контактов';
 
-    this._newGroupsList = ElementFactory.create('ul', ['new-groups']);
-    this._dialog.append(
-      this._heading,
+    this._newGroupsList = ElementFactory.create('ul', ['new-groups', 'flex']);
+    wrapper.append(
+      headingWrapper,
       GroupsList.list,
       this._newGroupsList,
       this.getCancelButton(),
       this.getAddGroupButtonsBox(),
     );
+    this._dialog.append(wrapper);
     document.body.append(this._dialog);
   }
 
@@ -35,20 +39,21 @@ export class GroupsDialog {
   }
 
   public close(): void {
+    this._newGroupsList.replaceChildren();
     this._dialog.close();
   }
 
   private getCancelButton(): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
-      textContent: 'X',
+      textContent: '',
       modifier: 'groups-dialog__cancel',
       onClick: () => this.close(),
     });
   }
 
   private getAddGroupButtonsBox(): HTMLDivElement {
-    const wrapper = ElementFactory.create('div', ['groups-dialog__add-group-box']);
+    const wrapper = ElementFactory.create('div', ['groups-dialog__add-group-box', 'flex']);
     wrapper.append(this.getAddNewGroupButton(), this.getSaveNewGroupButton());
     return wrapper;
   }

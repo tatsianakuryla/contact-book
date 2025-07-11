@@ -33,7 +33,7 @@ export class NewGroup {
   private getDeleteNewGroupButton(): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
-      textContent: 'X',
+      textContent: '',
       modifier: 'new-group__delete',
       onClick: () => {
         this.item.remove();

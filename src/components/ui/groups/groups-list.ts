@@ -3,7 +3,7 @@ import { App } from '../../../App';
 import { GroupDisplay } from './group-display';
 
 export class GroupsList {
-  public static list = ElementFactory.create('ul', ['groups__section']);
+  public static list = ElementFactory.create('ul', ['groups__section', 'flex']);
 
   public static update(): HTMLElement {
     this.list.replaceChildren();

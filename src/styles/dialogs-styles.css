@@ -1,4 +1,5 @@
-.contact-dialog {
+.contact-dialog,
+.groups-dialog {
   width: 100%;
   max-width: none;
   margin: 0;
@@ -6,11 +7,13 @@
   border: none;
   background: transparent;
 }
-.contact-dialog::backdrop {
+.contact-dialog::backdrop,
+.groups-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.contact-dialog__form-wrapper {
+.contact-dialog__form-wrapper,
+.groups-dialog__wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -25,7 +28,8 @@
   animation: slide-in-left 0.3s forwards ease-out;
 }
 @media (max-width: 540px) {
-  .contact-dialog__form-wrapper {
+  .contact-dialog__form-wrapper,
+  .groups-dialog__wrapper {
     left: auto;
     right: 0;
     transform: translateX(100%);
@@ -49,10 +53,12 @@
     transform: translateX(0);
   }
 }
+.groups-dialog__heading-wrapper,
 .contact-dialog__heading-wrapper {
   border-bottom: 1px solid #e6e6e6;
 }
 
+.groups-dialog__heading,
 .contact-dialog__heading {
   padding: 1.5rem;
   font-weight: 700;
@@ -67,11 +73,14 @@
   padding: 1.5rem;
 }
 
+.new-group,
 .contact-form__name-box,
 .contact-form__phone-box {
   flex-direction: column;
 }
 
+.new-group__item-input,
+.group__name,
 .contact-form__trigger-button,
 .contact-form__name-input,
 .contact-form__number-input {
@@ -105,6 +114,7 @@
   border-color: #005bfe;
 }
 
+.new-group__error-box,
 .contact-form__empty-group-error,
 .contact-form__error-box {
   padding-top: 4px;
@@ -133,6 +143,7 @@
   background-image: url("/icons/arrow-down.svg");
 }
 
+.groups-dialog__cancel-button,
 .contact-form__cancel-button {
   position: absolute;
   top: 24px;
@@ -150,9 +161,11 @@
   transition: background-color 0.3s ease;
   background-color: inherit;
 }
+.groups-dialog__cancel-button:focus,
 .contact-form__cancel-button:focus {
   background-color: #d9d9d9;
 }
+.groups-dialog__cancel-button:hover,
 .contact-form__cancel-button:hover {
   background-color: #d9d9d9;
 }
@@ -165,6 +178,8 @@
 
 .contact-form__options-list {
   flex-direction: column;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 .contact-form__option-none-button,
@@ -201,8 +216,14 @@
   background-color: #d9d9d9;
 }
 
-.contact-form__submit-button {
+.groups-dialog__add-group-box {
   align-self: flex-end;
+  padding-right: 24px;
+  gap: 12px;
+}
+
+.groups-dialog__save-group-button,
+.contact-form__submit-button {
   border: none;
   border-radius: 0.375rem;
   outline: none;
@@ -215,18 +236,99 @@
   padding: 0.625rem 1.1875rem;
   background-color: #005bfe;
 }
-.contact-form__submit-button:focus, .contact-form__submit-button:focus-visible {
+.groups-dialog__save-group-button:focus, .groups-dialog__save-group-button:focus-visible,
+.contact-form__submit-button:focus,
+.contact-form__submit-button:focus-visible {
   background-color: #0047c6;
 }
 @media (hover: hover) {
+  .groups-dialog__save-group-button:hover,
   .contact-form__submit-button:hover {
     background-color: #0047c6;
   }
 }
 @media (hover: none) {
+  .groups-dialog__save-group-button:active,
   .contact-form__submit-button:active {
     background-color: #0047c6;
   }
 }
 
-/*# sourceMappingURL=contacts-styles.css.map */
+.contact-form__submit-button {
+  align-self: flex-end;
+}
+
+.groups-dialog__wrapper {
+  padding-bottom: 24px;
+}
+
+.new-groups {
+  margin: 0 0 auto;
+  padding: 0 24px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.groups__section {
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 24px 24px 16px;
+}
+
+.new-group__input-wrapper,
+.group {
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.groups-dialog__add-group-button {
+  border: none;
+  border-radius: 0.375rem;
+  outline: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 130%;
+  text-align: center;
+  color: #005bfe;
+  transition: background-color 0.3s ease;
+  padding: 10px 14px 10px 21px;
+  background-color: transparent;
+}
+.groups-dialog__add-group-button:focus, .groups-dialog__add-group-button:focus-visible {
+  background-color: #ced8e7;
+}
+@media (hover: hover) {
+  .groups-dialog__add-group-button:hover {
+    background-color: #ced8e7;
+  }
+}
+@media (hover: none) {
+  .groups-dialog__add-group-button:active {
+    background-color: #ced8e7;
+  }
+}
+
+.new-group__delete-button,
+.group__delete-button {
+  padding: 11px 8px;
+  height: 38px;
+  width: 38px;
+  background-color: inherit;
+  border: 1px solid #f2f2f2;
+  border-radius: 0.375rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("/icons/delete.svg");
+  background-size: 25px 25px;
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+.new-group__delete-button:hover,
+.group__delete-button:hover {
+  background-color: #ea3d2f;
+  background-image: url("/icons/delete-hover.svg");
+  background-size: 25px 25px;
+}
+
+/*# sourceMappingURL=dialogs-styles.css.map */
