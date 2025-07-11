@@ -73,6 +73,7 @@
   font-size: 18px;
   line-height: 120%;
   color: $color-blue;
+  transition: color $transition-base;
 }
 
 .contacts__group-toggle-button {

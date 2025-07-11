@@ -61,12 +61,21 @@ export class GroupedContacts {
           const button = event.currentTarget;
           if (button instanceof HTMLButtonElement) {
             const parent = button.parentElement;
+            const previous = button.previousElementSibling;
             if (targetList.classList.contains('hidden')) {
               button.classList.add('contacts__group-toggle-button_close');
-              if (parent) parent.style.paddingBottom = '0';
+              if (parent) {
+                parent.style.paddingBottom = '0';
+              }
+              if (previous && previous instanceof HTMLElement) {
+                previous.style.color = '#000';
+              }
             } else {
               button.classList.remove('contacts__group-toggle-button_close');
               if (parent) parent.style.paddingBottom = '24px';
+              if (previous && previous instanceof HTMLElement) {
+                previous.style.color = '#005bfe';
+              }
             }
           }
         }
