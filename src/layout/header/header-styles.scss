@@ -19,9 +19,9 @@
 }
 
 .header__heading {
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 120%;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  line-height: $line-height-tight;
   color: $color-blue;
 }
 
@@ -30,9 +30,9 @@
   border: none;
   border-radius: $border-radius;
   outline: none;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 130%;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
   text-align: center;
   color: $color-white;
   transition: background-color $transition-base;
@@ -40,7 +40,7 @@
 
 .header__add-contact-button {
   padding: $header-add-button-padding-y $header-add-button-padding-x-right
-    $header-add-button-padding-y $header-add-button-padding-x-left;
+  $header-add-button-padding-y $header-add-button-padding-x-left;
   background-color: $color-pink;
   background-image: url('/icons/add.svg');
   background-repeat: no-repeat;

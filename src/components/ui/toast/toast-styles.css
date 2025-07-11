@@ -21,7 +21,7 @@
   box-shadow: 0 0.125rem 0.5rem 0 rgba(0, 0, 0, 0.1490196078);
   font-weight: 400;
   font-size: 0.875rem;
-  line-height: 130%;
+  line-height: 1.3;
   opacity: 0;
   transform: translateX(100%);
   background-image: url("./icons/ok.svg");
