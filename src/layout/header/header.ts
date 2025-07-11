@@ -4,11 +4,13 @@ import { ButtonFactory } from '../../components/ui/button/button-factory';
 import { App } from '../../App';
 
 export class Header {
-  private static readonly buttonLabels = {
+  private static readonly _buttonLabels = {
     addContact: 'Добавить контакт',
     contactGroups: 'Группы',
   };
-  private static readonly headingTextContent = 'Книга контактов';
+  private static readonly _heading = 'Книга контактов';
+  private static readonly _iconPath = './icons/contact-book.svg';
+  private static readonly _iconAlt = 'Контактная книга';
 
   public static create(): HTMLElement {
     const header = ElementFactory.create('header', ['header']);
@@ -25,35 +27,34 @@ export class Header {
   private static createHeading(): HTMLElement {
     const wrapper = ElementFactory.create('div', ['header__heading-wrapper', 'flex']);
     const heading = ElementFactory.create('h1', ['header__heading']);
-    heading.textContent = this.headingTextContent;
-    const image = ElementFactory.createImage(
-      './icons/contact-book.svg',
-      ['header__icon'],
-      'Контактная книга',
-    );
+    heading.textContent = this._heading;
+    const image = ElementFactory.createImage(this._iconPath, ['header__icon'], this._iconAlt);
     wrapper.append(image, heading);
     return wrapper;
   }
 
-  public static createAddContactButton(): HTMLButtonElement {
+  private static createButton(
+    label: string,
+    modifier: string,
+    onClick: () => void,
+  ): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
-      textContent: this.buttonLabels.addContact,
-      modifier: 'header__add-contact',
-      onClick: () => {
-        App.contactDialog.open();
-      },
+      textContent: label,
+      modifier,
+      onClick,
+    });
+  }
+
+  public static createAddContactButton(): HTMLButtonElement {
+    return this.createButton(this._buttonLabels.addContact, 'header__add-contact', () => {
+      App.contactDialog.open();
     });
   }
 
   private static createContactGroupButton(): HTMLButtonElement {
-    return ButtonFactory.create({
-      type: 'button',
-      textContent: this.buttonLabels.contactGroups,
-      modifier: 'header__contact-groups',
-      onClick: () => {
-        App.groupsDialog.open();
-      },
+    return this.createButton(this._buttonLabels.contactGroups, 'header__contact-groups', () => {
+      App.groupsDialog.open();
     });
   }
 }
