@@ -143,6 +143,7 @@
   background-image: url("/icons/arrow-down.svg");
 }
 
+.notification__close-button,
 .groups-dialog__cancel-button,
 .contact-form__cancel-button {
   position: absolute;
@@ -161,10 +162,12 @@
   transition: background-color 0.3s ease;
   background-color: inherit;
 }
+.notification__close-button:focus,
 .groups-dialog__cancel-button:focus,
 .contact-form__cancel-button:focus {
   background-color: #d9d9d9;
 }
+.notification__close-button:hover,
 .groups-dialog__cancel-button:hover,
 .contact-form__cancel-button:hover {
   background-color: #d9d9d9;
@@ -222,6 +225,7 @@
   gap: 12px;
 }
 
+.notification__approve-button,
 .groups-dialog__save-group-button,
 .contact-form__submit-button {
   border: none;
@@ -236,18 +240,22 @@
   padding: 0.625rem 1.1875rem;
   background-color: #005bfe;
 }
-.groups-dialog__save-group-button:focus, .groups-dialog__save-group-button:focus-visible,
+.notification__approve-button:focus, .notification__approve-button:focus-visible,
+.groups-dialog__save-group-button:focus,
+.groups-dialog__save-group-button:focus-visible,
 .contact-form__submit-button:focus,
 .contact-form__submit-button:focus-visible {
   background-color: #0047c6;
 }
 @media (hover: hover) {
+  .notification__approve-button:hover,
   .groups-dialog__save-group-button:hover,
   .contact-form__submit-button:hover {
     background-color: #0047c6;
   }
 }
 @media (hover: none) {
+  .notification__approve-button:active,
   .groups-dialog__save-group-button:active,
   .contact-form__submit-button:active {
     background-color: #0047c6;
@@ -283,6 +291,7 @@
   width: 100%;
 }
 
+.notification__cancel-button,
 .groups-dialog__add-group-button {
   border: none;
   border-radius: 0.375rem;
@@ -296,15 +305,19 @@
   padding: 10px 14px 10px 21px;
   background-color: transparent;
 }
-.groups-dialog__add-group-button:focus, .groups-dialog__add-group-button:focus-visible {
+.notification__cancel-button:focus, .notification__cancel-button:focus-visible,
+.groups-dialog__add-group-button:focus,
+.groups-dialog__add-group-button:focus-visible {
   background-color: #ced8e7;
 }
 @media (hover: hover) {
+  .notification__cancel-button:hover,
   .groups-dialog__add-group-button:hover {
     background-color: #ced8e7;
   }
 }
 @media (hover: none) {
+  .notification__cancel-button:active,
   .groups-dialog__add-group-button:active {
     background-color: #ced8e7;
   }

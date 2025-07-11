@@ -1,0 +1,53 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.notification {
+  padding: 40px;
+  width: 393px;
+  border: none;
+  border-radius: $border-radius;
+  @media (max-width: 540px) {
+    width: 349px;
+  }
+}
+
+.notification__wrapper {
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.notification__close-button {
+  top: 10px;
+  right: 10px;
+}
+
+.notification__heading {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  color: $color-black;
+}
+
+.notification__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  text-align: center;
+  color: $color-black;
+}
+
+.notification__buttons-box {
+  gap: 12px;
+}
+
+.notification__approve-button {
+  padding: 10px 15px;
+}
+
+.notification__cancel-button {
+  padding: 10px 27px 10px 20px;
+}

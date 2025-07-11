@@ -6,7 +6,7 @@ import type { Group } from '../../../types/types';
 import { defaultGroupValue } from '../../../constants/constants';
 import { Toast } from '../toast/toast';
 
-import { GroupsList } from './groups-list.ts';
+import { GroupsList } from '../groups/groups-list';
 
 export class NotificationDialog {
   private readonly _dialog: HTMLDialogElement;
@@ -16,13 +16,15 @@ export class NotificationDialog {
 
   constructor() {
     this._dialog = ElementFactory.create('dialog', ['notification']);
+    const wrapper = ElementFactory.create('div', ['notification__wrapper', 'flex']);
     this._heading = ElementFactory.create('h2', ['notification__heading']);
     this._heading.textContent = 'Удалить группу?';
 
     this._message = ElementFactory.create('p', ['notification__text']);
     this._message.textContent =
       'Удаление группы повлечёт за собой удаление контактов, связанных с этой группой';
-    this._dialog.append(this._heading, this._message, this.getCloseButton(), this.getButtonsBox());
+    wrapper.append(this._heading, this._message, this.getCloseButton(), this.getButtonsBox());
+    this._dialog.append(wrapper);
     document.body.append(this._dialog);
   }
 
@@ -38,14 +40,14 @@ export class NotificationDialog {
   private getCloseButton(): HTMLButtonElement {
     return ButtonFactory.create({
       type: 'button',
-      textContent: 'X',
+      textContent: '',
       modifier: 'notification__close',
       onClick: () => this.close(),
     });
   }
 
   private getButtonsBox(): HTMLDivElement {
-    const wrapper = ElementFactory.create('div', ['notification__buttons-box']);
+    const wrapper = ElementFactory.create('div', ['notification__buttons-box', 'flex']);
     wrapper.append(this.getApproveButton(), this.getCancelButton());
     return wrapper;
   }

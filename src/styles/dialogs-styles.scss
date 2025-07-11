@@ -150,6 +150,7 @@
   background-image: url('/icons/arrow-down.svg');
 }
 
+.notification__close-button,
 .groups-dialog__cancel-button,
 .contact-form__cancel-button {
   position: absolute;
@@ -229,6 +230,7 @@
   gap: 12px;
 }
 
+.notification__approve-button,
 .groups-dialog__save-group-button,
 .contact-form__submit-button {
   border: none;
@@ -276,6 +278,7 @@
      width:  100%;
 }
 
+.notification__cancel-button,
 .groups-dialog__add-group-button {
   border: none;
   border-radius: $border-radius;

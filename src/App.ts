@@ -3,7 +3,7 @@ import { GroupsState } from './states/groups-state';
 import { BaseLayout } from './layout/base-layout/base-layout';
 import { ContactDialog } from './components/ui/contacts/contact-dialog';
 import { GroupsDialog } from './components/ui/groups/groups-dialog';
-import { NotificationDialog } from './components/ui/groups/notification-display';
+import { NotificationDialog } from './components/ui/notification/notification-display.ts';
 
 export class App {
   public static readonly contactsState = new ContactsState();
