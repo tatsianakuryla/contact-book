@@ -52,3 +52,18 @@ $main-add-button-icon-offset: 6.625rem; // 106px
 $transition-base: 0.3s ease;
 
 // Contacts
+
+// Toast
+$toast-z-index: 9999;
+$toast-position-bottom-desktop: 3.75rem; // 60px
+$toast-position-right-desktop: 3.75rem;  // 60px
+$toast-position-bottom-mobile: 1rem;     // 16px
+$toast-position-right-mobile: 1rem;      // 16px
+$toast-padding: 1rem 1rem 1rem 2.5rem;   // 16px 16px 16px 40px
+$toast-box-shadow: 0 0.125rem 0.5rem 0 #00000026; // 0 2px 8px 0
+$toast-font-size: 0.875rem;              // 14px
+$toast-line-height: 130%;
+$toast-icon-offset-x: 1rem;              // 16px
+$toast-animation-in: 0.4s ease forwards;
+$toast-animation-out: 0.3s ease forwards;
+$toast-icon-url: './icons/ok.svg';

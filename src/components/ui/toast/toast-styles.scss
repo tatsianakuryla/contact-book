@@ -3,14 +3,14 @@
 
 .toast {
   position: fixed;
-  bottom: 60px;
-  right: 60px;
-  z-index: 9999;
+  bottom: $toast-position-bottom-desktop;
+  right: $toast-position-right-desktop;
+  z-index: $toast-z-index;
   pointer-events: none;
 
-  @media (max-width: 1440px) {
-    bottom: 16px;
-    right: 16px;
+  @media (max-width: 90rem) {
+    bottom: $toast-position-bottom-mobile;
+    right: $toast-position-right-mobile;
   }
 }
 
@@ -19,21 +19,21 @@
   background-color: $color-white;
   color: $color-black;
   border-radius: $border-radius;
-  padding: 16px 16px 16px 40px;
-  box-shadow: 0 2px 8px 0 #00000026;
+  padding: $toast-padding;
+  box-shadow: $toast-box-shadow;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 130%;
+  font-size: $toast-font-size;
+  line-height: $toast-line-height;
   opacity: 0;
   transform: translateX(100%);
-  background-image: url('./icons/ok.svg');
+  background-image: url($toast-icon-url);
   background-repeat: no-repeat;
   background-position-y: center;
-  background-position-x: 16px;
-  animation: toast-slide-in 0.4s ease forwards;
+  background-position-x: $toast-icon-offset-x;
+  animation: toast-slide-in $toast-animation-in;
 
   &.hide {
-    animation: toast-slide-out 0.3s ease forwards;
+    animation: toast-slide-out $toast-animation-out;
   }
 }
 
