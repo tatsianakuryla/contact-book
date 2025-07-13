@@ -187,8 +187,9 @@
 
 .contact-form__options-list {
   flex-direction: column;
-  max-height: 600px;
+  max-height: 300px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .contact-form__option-none-button,
