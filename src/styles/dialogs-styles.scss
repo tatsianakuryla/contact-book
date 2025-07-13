@@ -29,6 +29,7 @@
   z-index: 1001;
   transform: translateX(-100%);
   animation: slide-in-left 0.3s forwards ease-out;
+  min-height: 0;
 
   @media (max-width: $breakpoint-mobile) {
     left: auto;
@@ -269,6 +270,12 @@
   gap: 16px;
   margin: 0;
   padding: 24px 24px 16px;
+}
+
+.groups__section,
+.new-groups {
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .new-group__input-wrapper,
