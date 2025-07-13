@@ -280,6 +280,7 @@
 }
 
 .groups__section {
+  list-style: none;
   flex-direction: column;
   gap: 16px;
   margin: 0;

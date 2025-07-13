@@ -59,8 +59,7 @@ export class GroupDeleteNotificationDialog {
       App.groupsState.removeGroup(this._group.name);
       GroupedContacts.update();
       GroupsList.update();
-      App.groupsDialog.close();
-      Toast.show('Группа успешно удалена');
+      Toast.showUnderModal('Группа успешно удалена', App.groupsDialog.dialog);
       this.close();
     });
   }

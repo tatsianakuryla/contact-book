@@ -33,6 +33,10 @@ export class GroupsDialog {
     document.body.append(this._dialog);
   }
 
+  public get dialog(): HTMLDialogElement {
+    return this._dialog;
+  }
+
   public open(): void {
     GroupsList.update();
     this._dialog.showModal();
