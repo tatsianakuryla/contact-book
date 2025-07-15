@@ -17,7 +17,7 @@ Contact Book — SPA-приложение для ведения и редакт�
 ## 🔗 Деплой
 
 Приложение доступно по ссылке:  
-👉 **[https://tatsianakuryla.github.io/contact-book/](https://deploy-url.com)**
+👉 **[Ссылка на деплой](https://tatsianakuryla.github.io/contact-book/)**
 
 ---
 
